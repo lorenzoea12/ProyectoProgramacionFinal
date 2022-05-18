@@ -1,6 +1,6 @@
 package Clases;
 
-public class Circuito {
+public class Circuito extends ElementoConNombre{
 
 	private String lugar;
 	private byte rectas;
