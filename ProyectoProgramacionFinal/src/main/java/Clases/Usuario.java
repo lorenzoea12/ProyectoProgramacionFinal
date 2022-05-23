@@ -1,5 +1,12 @@
 package Clases;
 
+
+
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import Utils.ConexionBD;
+
 public class Usuario {
 	
 	private String nombre;
@@ -11,12 +18,28 @@ public class Usuario {
 	
 	
 
-	public Usuario(String nombre, String contraseña, Partida partida) {
+	public Usuario(String nombre, String contraseña, Partida partida) throws SQLException {
 		super();
+		
+		Statement smt=ConexionBD.conectar();
+		
+		if(smt.executeUpdate("insert into usuario values('"
+				+nombre+"','"+contraseña+"','"+partida+"')")>0) {
+			this.nombre = nombre;
+			this.contraseña = contraseña;
+			this.partida = partida;
+			
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se ha podido insertar ");
+			
+		}
 		this.nombre = nombre;
 		this.contraseña = contraseña;
 		this.partida = partida;
 	}
+	
+	
 	
 	
 	public String getNombre() {
