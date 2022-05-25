@@ -14,8 +14,8 @@ import Excepciones.NombreInvalidoException;
 import Excepciones.UsuarioNoExisteException;
 import Utils.ConexionBD;
 
-public class Usuario {
-	
+public class Usuario  {
+	private String email;
 	private String nombre;
 	private String contraseña;
 	private Partida partida;
@@ -23,9 +23,12 @@ public class Usuario {
 	
 	
 	
+private Usuario() {
+		
+	}
 	
 
-	public Usuario(String nombre, String contraseña, Partida partida) throws SQLException, ContraseñaInvalida, NombreInvalidoException {
+	public Usuario(String nombre, String contraseña,String email) throws SQLException, ContraseñaInvalida, NombreInvalidoException {
 		super();
 		
 		if(!nombreValido(nombre)) {
@@ -39,10 +42,12 @@ public class Usuario {
 		Statement smt=ConexionBD.conectar();
 		
 		if(smt.executeUpdate("insert into usuario values('"
-				+nombre+"','"+contraseña+"','"+partida+"')")>0) {
+				+nombre+"','"+contraseña+"','"+email+"','"+partida+"')")>0) {
+			this.email=email;
 			this.nombre = nombre;
 			this.contraseña = contraseña;
-			this.partida = partida;
+			this.partida=partida;
+		
 			
 		}else {
 			ConexionBD.desconectar();
@@ -62,7 +67,7 @@ public class Usuario {
 			throw new ContraseñaInvalida (" La contraseña no puede tener menos de 3 caracteres ");
 		}
 		Statement smt=ConexionBD.conectar();
-ResultSet cursor=smt.executeQuery(" select * from usuario where nombre='"+nombre+"'");
+ResultSet cursor=smt.executeQuery(" select * from usuario where email='" +email+"'");
 
 		if(cursor.next()) {
 			this.contraseña=cursor.getString("contraseña");
@@ -74,7 +79,7 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where nombre='"+nombre
 			
 		 this.nombre=cursor.getString("nombre");
 		 this.contraseña=cursor.getString("contraseña");
-		 this.partida=(Partida) cursor.getRowId("partida");
+		 this.email=cursor.getString("email");
 		 
 	
 			
@@ -95,6 +100,24 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where nombre='"+nombre
 	
 	
 	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) throws SQLException {
+				Statement smt=ConexionBD.conectar();
+				if(smt.executeUpdate("update usuario set email='"
+				+email+"' where email='"+this.email+"'")>0) {
+					this.email = email;
+				}else {
+					ConexionBD.desconectar();
+					throw new SQLException("No se ha podido cambiar el email");
+				}
+				ConexionBD.desconectar();
+	}
+	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -110,7 +133,7 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where nombre='"+nombre
 			}
 			Statement smt=ConexionBD.conectar();
 			if(smt.executeUpdate("update usuario set nombre='"
-			+nombre+"' where nombre='"+this.nombre+"'")>0) {
+			+nombre+"' where email='"+this.email+"'")>0) {
 				//Solo modificamos si todo ha ido bien actualizando
 				this.nombre = nombre;
 			}else {
@@ -139,7 +162,7 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where nombre='"+nombre
 		}
 		Statement smt=ConexionBD.conectar();
 		if(smt.executeUpdate("update usuario set contraseña='"
-		+contraseña+"' where nombre='"+this.nombre+"'")>0) {
+		+contraseña+"' where email='"+this.email+"'")>0) {
 			this.contraseña = contraseña;
 		}else {
 			ConexionBD.desconectar();
@@ -201,11 +224,10 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where nombre='"+nombre
 		try {
 			ResultSet cursor=smt.executeQuery("select * from usuario");
 			while(cursor.next()) {
-				Usuario u=new Usuario(nombre, contraseña, partida);
-				u.nombre=cursor.getString("nombre");
+				Usuario u=new Usuario();
+				u.email=cursor.getString("email");
 				u.contraseña=cursor.getString("pass");
-				u.partida=(Partida) cursor.getRowId("partida");
-			
+				u.nombre=cursor.getString("nombre");
 			}
 			
 		} catch (SQLException e) {
@@ -221,12 +243,11 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where nombre='"+nombre
 
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", contraseña=" + contraseña + ", partida=" + partida + "]";
+		return "Usuario [email=" + email + ", nombre=" + nombre + ", contraseña=" + contraseña + ", partida=" + partida
+				+ "]";
 	}
 	
-	
-	
-	
+
 	
 	
 	

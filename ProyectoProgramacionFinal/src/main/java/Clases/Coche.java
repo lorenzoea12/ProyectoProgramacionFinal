@@ -1,6 +1,6 @@
 package Clases;
 
-public class Coche {
+public class Coche  {
 	
 	private Equipo escuderia;
 	private String color;

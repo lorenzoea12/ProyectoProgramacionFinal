@@ -1,6 +1,6 @@
 package Clases;
 
-public class Partida {
+public class Partida  {
 	private Mundial mundial;
 
 	
