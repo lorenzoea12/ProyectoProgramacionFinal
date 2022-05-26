@@ -2,6 +2,12 @@ package Clases;
 
 public class ElementoConNombre {
 	private String nombre;
+	
+	
+	
+	public ElementoConNombre(){
+		
+	}
 
 
 

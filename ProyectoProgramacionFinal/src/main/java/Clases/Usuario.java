@@ -4,6 +4,7 @@ package Clases;
 
 import java.sql.ResultSet;
 
+
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ private Usuario() {
 	}
 	
 
-	public Usuario(String nombre, String contraseña,String email) throws SQLException, ContraseñaInvalida, NombreInvalidoException {
+	public Usuario(String email, String nombre,String contraseña) throws SQLException, ContraseñaInvalida, NombreInvalidoException {
 		super();
 		
 		if(!nombreValido(nombre)) {
@@ -41,12 +42,12 @@ private Usuario() {
 		
 		Statement smt=ConexionBD.conectar();
 		
-		if(smt.executeUpdate("insert into usuario values('"
-				+nombre+"','"+contraseña+"','"+email+"','"+partida+"')")>0) {
+		if(smt.executeUpdate("insert into usuario(email,nombre,contraseña)values('"
+				+email+"','"+nombre+"','"+contraseña+"')")>0) {
 			this.email=email;
 			this.nombre = nombre;
 			this.contraseña = contraseña;
-			this.partida=partida;
+		
 		
 			
 		}else {
@@ -67,7 +68,7 @@ private Usuario() {
 			throw new ContraseñaInvalida (" La contraseña no puede tener menos de 3 caracteres ");
 		}
 		Statement smt=ConexionBD.conectar();
-ResultSet cursor=smt.executeQuery(" select * from usuario where email='" +email+"'");
+ResultSet cursor=smt.executeQuery(" select * from usuario where email='"+email+"'");
 
 		if(cursor.next()) {
 			this.contraseña=cursor.getString("contraseña");
@@ -76,10 +77,10 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where email='" +email+
 				throw new  ContraseñaIncorrectaException (" La contraseña no es correcta ");
 				
 			}
-			
+		 this.email=cursor.getString("email");
 		 this.nombre=cursor.getString("nombre");
 		 this.contraseña=cursor.getString("contraseña");
-		 this.email=cursor.getString("email");
+		
 		 
 	
 			
