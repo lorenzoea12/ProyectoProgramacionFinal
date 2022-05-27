@@ -42,7 +42,7 @@ private Usuario() {
 		
 		Statement smt=ConexionBD.conectar();
 		
-		if(smt.executeUpdate("insert into usuario(email,nombre,contraseña)values('"
+		if(smt.executeUpdate("insert into usuario values('"
 				+email+"','"+nombre+"','"+contraseña+"')")>0) {
 			this.email=email;
 			this.nombre = nombre;
@@ -58,11 +58,8 @@ private Usuario() {
 	}
 	
 	
-	public Usuario(String nombre,String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException, ContraseñaInvalida, NombreInvalidoException {
+	public Usuario(String email,String contraseña) throws SQLException, ContraseñaIncorrectaException, UsuarioNoExisteException, ContraseñaInvalida, NombreInvalidoException {
 		
-		if(!nombreValido(nombre)) {
-			throw new NombreInvalidoException("El nombre no puede estar vacio");
-		}
 		
 		if(!contraseñaValida(contraseña)) {
 			throw new ContraseñaInvalida (" La contraseña no puede tener menos de 3 caracteres ");

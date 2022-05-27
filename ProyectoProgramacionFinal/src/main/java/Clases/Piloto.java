@@ -2,6 +2,9 @@ package Clases;
 
 import java.sql.SQLException;
 
+import Excepciones.ApellidoInvalido;
+import Excepciones.EdadInvalida;
+
 public class Piloto extends Persona {
 	private Equipo equipo;
 	private Coche coche;
@@ -13,9 +16,9 @@ public class Piloto extends Persona {
 	
 
 
-	public Piloto(String nombre, byte edad, String apellido, String nacionalidad, Equipo equipo, Coche coche,
-			byte resistencia, byte experiencia) throws SQLException {
-		super(nombre, edad, apellido, nacionalidad);
+	public Piloto(String nombre, byte edad, String apellido, String nacionalidad, String dni, Equipo equipo,
+			Coche coche, byte resistencia, byte experiencia) throws SQLException, ApellidoInvalido, EdadInvalida {
+		super(nombre, edad, apellido, nacionalidad, dni);
 		this.equipo = equipo;
 		this.coche = coche;
 		this.resistencia = resistencia;

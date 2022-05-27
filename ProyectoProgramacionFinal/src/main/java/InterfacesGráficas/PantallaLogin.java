@@ -33,7 +33,7 @@ public class PantallaLogin extends JPanel {
 	
 private	Ventana ventana;
 	
-	private JTextField campoUsuario;
+	private JTextField campoEmail;
 	private JPasswordField campoContraseña;
 	
 	
@@ -71,18 +71,19 @@ private	Ventana ventana;
 		etiquetaTitulo.setBounds(10, 11, 480, 44);
 		add(etiquetaTitulo);
 		
-		JLabel EtiquetaUsuario = new JLabel("Usuario");
-		EtiquetaUsuario.setBounds(84, 80, 46, 14);
-		add(EtiquetaUsuario);
+		JLabel EtiquetaEmail = new JLabel("Email");
+		EtiquetaEmail.setHorizontalAlignment(SwingConstants.TRAILING);
+		EtiquetaEmail.setBounds(84, 80, 46, 14);
+		add(EtiquetaEmail);
 		
 		JLabel EtiquetaPass = new JLabel("Contrase\u00F1a");
 		EtiquetaPass.setBounds(84, 119, 85, 14);
 		add(EtiquetaPass);
 		
-		campoUsuario = new JTextField();
-		campoUsuario.setBounds(179, 77, 175, 20);
-		add(campoUsuario);
-		campoUsuario.setColumns(10);
+		campoEmail = new JTextField();
+		campoEmail.setBounds(179, 77, 175, 20);
+		add(campoEmail);
+		campoEmail.setColumns(10);
 		
 		campoContraseña = new JPasswordField();
 		campoContraseña.setBounds(179, 116, 175, 20);
@@ -100,34 +101,39 @@ private	Ventana ventana;
 		botonLoguearse.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String nombre = campoUsuario.getText();
+				String email = campoEmail.getText();
 				String contraseña = new String(campoContraseña.getPassword());
-		
-				JOptionPane.showMessageDialog(ventana,"Iniciando Correctamente","Incio Sesión",JOptionPane.PLAIN_MESSAGE );
-				ventana.irAPantalla("login");
-			
+				
 				try {
-					new Usuario(nombre, contraseña);
+					ventana.usuarioLogado=new Usuario(email,contraseña);
+					JOptionPane.showMessageDialog(ventana,
+							"Bienvenido"+ventana.usuarioLogado.getNombre(),
+							"Inicio de sesión con éxito", JOptionPane.INFORMATION_MESSAGE);
+					ventana.irAPantalla("listarUsuarios");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (ContraseñaInvalida e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (NombreInvalidoException e1) {
+				} catch (UsuarioNoExisteException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				
+					JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",
+					JOptionPane.ERROR_MESSAGE);
+			e1.printStackTrace();
 				} catch (ContraseñaIncorrectaException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (UsuarioNoExisteException e1) {
+				} catch (NombreInvalidoException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
-		});
-
+				}
+			
+			});
 		
+				
 	
 		
 		

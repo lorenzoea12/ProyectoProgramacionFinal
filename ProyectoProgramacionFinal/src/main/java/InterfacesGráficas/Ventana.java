@@ -9,11 +9,15 @@ package InterfacesGráficas;
 	import javax.swing.JFrame;
 	import javax.swing.JPanel;
 
+import Clases.Usuario;
+
 	public class Ventana extends JFrame{
 		/**
 		 * la clave va a ser un nombre que le ponemos a la pantalla y el valor la pantalla con ese nombre
 		 */
 		private HashMap<String, JPanel> pantallas;
+		protected Usuario usuarioLogado;
+		
 		
 		public Ventana() {
 			this.pantallas= new HashMap<String,JPanel>();

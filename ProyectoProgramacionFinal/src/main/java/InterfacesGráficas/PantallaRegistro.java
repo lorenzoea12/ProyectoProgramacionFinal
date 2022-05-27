@@ -146,7 +146,7 @@ public class PantallaRegistro extends JPanel {
 				ventana.irAPantalla("login");
 			
 				try {
-					new Usuario(nombre, email, pass);
+					new Usuario( email,nombre, pass);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

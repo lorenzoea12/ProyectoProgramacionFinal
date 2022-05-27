@@ -1,9 +1,13 @@
 package Clases;
 
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Excepciones.ApellidoInvalido;
+import Excepciones.EdadInvalida;
+import Excepciones.NombreInvalidoException;
 import Utils.ConexionBD;
 
 public class Persona extends ElementoConNombre {
@@ -15,12 +19,19 @@ public class Persona extends ElementoConNombre {
 	
 
 
-	public Persona(String nombre, byte edad, String apellido, String nacionalidad) throws SQLException {
+	public Persona(String nombre, byte edad, String apellido, String nacionalidad, String dni) throws SQLException, ApellidoInvalido, EdadInvalida {
 		super(nombre);
+		
+		if(!edadValida(edad)) {
+			throw new EdadInvalida("La edad no puede ser menos a 12 años ");
+		}
+		if(!apellidoValido(apellido)) {
+			throw new ApellidoInvalido("El apellido no puede estar vacio");
+		}
 		Statement smt=ConexionBD.conectar();
 		if(smt.executeUpdate("insert into persona (dni,nombre,edad,apellido,nacionalidad)alues  ('"
-				+nombre+"','"+edad+"','"+apellido+"','"+nacionalidad+"')")>0) {
-			
+				+dni+"','"+nombre+"''"+edad+"','"+apellido+"','"+nacionalidad+"')")>0) {
+			this.dni=dni;
 			this.edad = edad;
 			this.apellido = apellido;
 			this.nacionalidad = nacionalidad;
@@ -55,7 +66,11 @@ public class Persona extends ElementoConNombre {
 }	
 		
 	
-		
+	private static boolean edadValida (byte edad) {
+		return !(edad<12);
+	}
+	
+	
 	
 
 
@@ -64,7 +79,10 @@ public class Persona extends ElementoConNombre {
 	}
 	
 	
-	public void setEdad(byte edad) throws SQLException {
+	public void setEdad(byte edad) throws SQLException, EdadInvalida {
+		if(!edadValida(edad)) {
+			throw new EdadInvalida("La edad no puede ser menos a 12 años ");
+		}
 		Statement smt=ConexionBD.conectar();
 		if(smt.executeUpdate("Update mascota set raza='"+edad+"' where numeroChip = "+this.dni+"")>0) {
 			this.edad=edad;
@@ -79,7 +97,9 @@ public class Persona extends ElementoConNombre {
 
 
 	
-	
+	private static boolean apellidoValido(String apellido) {
+		return !apellido.isBlank();
+	}
 	
 	
 	public String getApellido() {
@@ -89,7 +109,10 @@ public class Persona extends ElementoConNombre {
 	}
 	
 	
-	public void setApellido(String apellido) throws SQLException {
+	public void setApellido(String apellido) throws SQLException, ApellidoInvalido {
+		if(!apellidoValido(apellido)) {
+			throw new ApellidoInvalido("El nombre no puede estar vacio");
+		}
 		Statement smt=ConexionBD.conectar();
 		if(smt.executeUpdate("Update persona set apellido='"+apellido+"' where id="+this.dni+"")>0) {
 		
