@@ -1,7 +1,7 @@
 package Clases;
 
 public class ElementoConNombre {
-	private String nombre;
+	public String nombre;
 	
 	
 	

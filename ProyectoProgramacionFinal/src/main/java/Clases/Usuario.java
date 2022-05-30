@@ -199,13 +199,13 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where email='"+email+"
 		Statement smt=ConexionBD.conectar();
 		try {
 	
-			smt.executeUpdate("delete from usuario where nombre='"+this.nombre+"'");
-			this.partida=null;
+			smt.executeUpdate("delete from usuario where email='"+this.email+"'");
+			this.email=null;
 			this.nombre=null;
 			this.contraseña=null;
+			this.partida=null;
 		} catch (SQLException e) {
-			// OJO, SI HEMOS HECHO EL DAO BIEN, NUNCA VA A ENTRAR EN ESTE CATCH
-			//PORQUE EL EMAIL SIEMPRE VA A EXISTIR
+		
 			e.printStackTrace();
 		}
 		
@@ -224,12 +224,12 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where email='"+email+"
 			while(cursor.next()) {
 				Usuario u=new Usuario();
 				u.email=cursor.getString("email");
-				u.contraseña=cursor.getString("pass");
 				u.nombre=cursor.getString("nombre");
+				u.contraseña=cursor.getString("contraseña");
 			}
 			
 		} catch (SQLException e) {
-			// AQU� NO DEBER�A ENTRAR NUNCA PORQUE LA CONSULTA SIEMPRE VA A SER CORRECTA
+		
 			e.printStackTrace();
 		}
 		

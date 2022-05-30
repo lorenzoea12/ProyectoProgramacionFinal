@@ -29,7 +29,7 @@ public class Persona extends ElementoConNombre {
 			throw new ApellidoInvalido("El apellido no puede estar vacio");
 		}
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("insert into persona (dni,nombre,edad,apellido,nacionalidad)alues  ('"
+		if(smt.executeUpdate("insert into persona (dni,nombre,edad,apellido,nacionalidad) values  ('"
 				+dni+"','"+nombre+"''"+edad+"','"+apellido+"','"+nacionalidad+"')")>0) {
 			this.dni=dni;
 			this.edad = edad;
@@ -111,7 +111,7 @@ public class Persona extends ElementoConNombre {
 	
 	public void setApellido(String apellido) throws SQLException, ApellidoInvalido {
 		if(!apellidoValido(apellido)) {
-			throw new ApellidoInvalido("El nombre no puede estar vacio");
+			throw new ApellidoInvalido("El apellido no puede estar vacio");
 		}
 		Statement smt=ConexionBD.conectar();
 		if(smt.executeUpdate("Update persona set apellido='"+apellido+"' where id="+this.dni+"")>0) {
@@ -144,23 +144,44 @@ public class Persona extends ElementoConNombre {
 		
 	}else {
 		ConexionBD.desconectar();
-		throw new SQLException("No se pudo cambiar el usuario");
+		throw new SQLException("No se pudo cambiar la nacionalidad");
 
 	}
 		
 }
 		
 	
+		public void eliminar() {
+			Statement smt = ConexionBD.conectar();
+			
+			try {
+				if (smt.executeUpdate("DELETE FROM persona WHERE dni =" + dni) > 0) {
+					this.dni = null;
+					this.nombre = null;
+					this.edad = 0;
+					this.apellido = null;
+					this.nacionalidad=null;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				ConexionBD.desconectar();
+			}
+	}
+
+
+
+		@Override
+		public String toString() {
+			return "Persona [dni=" + dni + ", edad=" + edad + ", apellido=" + apellido + ", nacionalidad="
+					+ nacionalidad + "]";
+		}
 	
 
 
 
 
-	@Override
-	public String toString() {
-		return "Persona [dni=" + dni + ", edad=" + edad + ", apellido=" + apellido + ", nacionalidad=" + nacionalidad
-				+ "]";
-	}
 	
 	
 }
