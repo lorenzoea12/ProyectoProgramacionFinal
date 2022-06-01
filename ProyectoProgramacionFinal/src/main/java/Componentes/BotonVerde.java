@@ -13,8 +13,8 @@ this.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				setForeground(new Color(150, 200, 150));
-				setBackground(new Color(0, 50, 0));
+				setForeground(new Color(0, 0, 0));
+				setBackground(new Color(255, 255, 255));
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 			@Override
@@ -24,8 +24,8 @@ this.addMouseListener(new MouseAdapter() {
 		});
 	}
 	private void estilosDefault() {
-		this.setForeground(new Color(0, 102, 153));
-		this.setBackground(new Color(102, 255, 100));
+		this.setForeground(new Color(255, 0, 0));
+		this.setBackground(new Color(0, 0, 0));
 	}
 
 }

@@ -24,6 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class PantallaRegistro extends JPanel {
 	private Ventana ventana;
@@ -35,11 +36,13 @@ public class PantallaRegistro extends JPanel {
 		setLayout(null);
 		
 		JLabel tituloRegistro = new JLabel("Registro ");
+		tituloRegistro.setForeground(Color.WHITE);
 		tituloRegistro.setBounds(351, 2, 170, 41);
 		tituloRegistro.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 36));
 		add(tituloRegistro);
 		
 		JLabel etiquetaNombre = new JLabel("Email");
+		etiquetaNombre.setForeground(Color.WHITE);
 		etiquetaNombre.setBounds(287, 87, 36, 16);
 		add(etiquetaNombre);
 		
@@ -49,7 +52,8 @@ public class PantallaRegistro extends JPanel {
 		add(campoEmail);
 		
 		JLabel etiquetaEmail = new JLabel("Nombre:");
-		etiquetaEmail.setBounds(287, 154, 40, 13);
+		etiquetaEmail.setForeground(Color.WHITE);
+		etiquetaEmail.setBounds(287, 154, 59, 13);
 		add(etiquetaEmail);
 		
 		campoNombre = new JTextField();
@@ -58,7 +62,8 @@ public class PantallaRegistro extends JPanel {
 		campoNombre.setColumns(10);
 		
 		JLabel etiquetaPass = new JLabel("Contrase\u00F1a: ");
-		etiquetaPass.setBounds(287, 231, 59, 13);
+		etiquetaPass.setForeground(Color.WHITE);
+		etiquetaPass.setBounds(272, 231, 82, 13);
 		add(etiquetaPass);
 		
 		campoPass = new JPasswordField();
@@ -68,7 +73,7 @@ public class PantallaRegistro extends JPanel {
 	
 		
 		JButton botonRegistrarse = new JButton("Registrarse");
-		botonRegistrarse.setBounds(524, 313, 85, 21);
+		botonRegistrarse.setBounds(524, 313, 116, 21);
 		
 		botonRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -87,7 +92,8 @@ public class PantallaRegistro extends JPanel {
 		add(botonAtras);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(33, 67, 450, 241);
+		lblNewLabel.setIcon(new ImageIcon(PantallaRegistro.class.getResource("/imagenes/F1_Unveil_Images_Final-1000-1200x900.jpg")));
+		lblNewLabel.setBounds(0, 0, 810, 620);
 		add(lblNewLabel);
 		ventana=v;
 		

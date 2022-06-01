@@ -21,7 +21,7 @@ public class Carrera {
 		
 			Statement smt = ConexionBD.conectar();
 		
-		if (smt.executeUpdate("insert into carrera (fecha,ArrayList<Circuito>circuito,ArrayList<Piloto>piloto = " + numChip + " WHERE humano = '" + this.numChip + "';")
+		if (smt.executeUpdate("insert into carrera (fecha,ArrayList<Circuito>circuito,ArrayList<Piloto>piloto = " + numChip 8+ " WHERE humano = '" + this.numChip + "';")
 				> 0
 		) 
 		{

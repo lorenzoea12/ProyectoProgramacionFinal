@@ -15,6 +15,7 @@ import javax.swing.border.MatteBorder;
 import Clases.Usuario;
 import Componentes.BotonAzul;
 import Componentes.BotonRojo;
+import Componentes.BotonVerde;
 import Excepciones.ContraseñaIncorrectaException;
 import Excepciones.ContraseñaInvalida;
 import Excepciones.NombreInvalidoException;
@@ -54,7 +55,7 @@ private	Ventana ventana;
 			
 		});
 		botonLogin.setToolTipText("Pincha aqu\u00ED para iniciar sesi\u00F3n");
-		botonLogin.setBounds(233, 398, 160, 44);
+		botonLogin.setBounds(258, 362, 160, 44);
 		this.add(botonLogin);
 		
 		JButton botonRegistro = new BotonAzul("Registrarse");
@@ -65,7 +66,7 @@ private	Ventana ventana;
 				ventana.irAPantalla("registro");
 			}
 		});
-		botonRegistro.setBounds(464, 397, 143, 46);
+		botonRegistro.setBounds(452, 361, 143, 46);
 		add(botonRegistro);
 		
 		JLabel etiquetaTitulo = new JLabel("Iniciar Sesi\u00F3n");
@@ -105,9 +106,16 @@ private	Ventana ventana;
 		add(botonLoguearse);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setIcon(new ImageIcon(PantallaLogin.class.getResource("/imagenes/F1_Unveil_Images_Final-1000-1200x900.jpg")));
 		lblNewLabel.setBounds(0, 0, 810, 620);
 		add(lblNewLabel);
+		
+		JButton btnNewButton_1 = new BotonVerde("Salir ");
+		btnNewButton_1.setBackground(Color.WHITE);
+		btnNewButton_1.setForeground(Color.RED);
+		btnNewButton_1.setBounds(376, 417, 116, 45);
+		add(btnNewButton_1);
 		
 		
 		botonLoguearse.addMouseListener(new MouseAdapter() {

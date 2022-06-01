@@ -19,7 +19,7 @@ public class Usuario  {
 	private String email;
 	private String nombre;
 	private String contraseña;
-	private Partida partida;
+	
 	
 	
 	
@@ -175,23 +175,7 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where email='"+email+"
 	
 	
 	
-	public Partida getPartida() {
-		return partida;
-	}
 	
-	
-	public void setPartida(Partida partida) throws SQLException {
-		
-		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("update usuario set partida="
-		+partida+" where nombre='"+this.nombre+"'")>0) {
-			this.partida = partida;
-		}else {
-			ConexionBD.desconectar();
-			throw new SQLException("No se ha podido iniciar el valor partida ");
-		}
-		ConexionBD.desconectar();
-	}
 	
 	
 	public void eliminar() {
@@ -203,7 +187,7 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where email='"+email+"
 			this.email=null;
 			this.nombre=null;
 			this.contraseña=null;
-			this.partida=null;
+			
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
@@ -241,8 +225,8 @@ ResultSet cursor=smt.executeQuery(" select * from usuario where email='"+email+"
 
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", nombre=" + nombre + ", contraseña=" + contraseña + ", partida=" + partida
-				+ "]";
+		return "Usuario [email=" + email + ", nombre=" + nombre + ", contraseña=" + contraseña + 
+				"]";
 	}
 	
 

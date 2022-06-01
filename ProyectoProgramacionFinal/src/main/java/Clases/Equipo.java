@@ -1,21 +1,29 @@
 package Clases;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Equipo {
+import Utils.ConexionBD;
+
+public class Equipo extends ElementoConNombre {
 	private String manager;
 	private ArrayList<Piloto>piloto;
 	private ArrayList<Coche>coche;
-	private Partida partida;
+	
 	
 
 
-	public Equipo(String manager, ArrayList<Piloto> piloto, ArrayList<Coche> coche, Partida partida) {
-		super();
+
+	public Equipo(String nombre, String manager, ArrayList<Piloto> piloto, ArrayList<Coche> coche) {
+		super(nombre);
+		Statement smt = ConexionBD.conectar();
+		if(smt.executeUpdate("insert into persona (nombre,manager,piloto1,piloto2,coche1,coche2) values  ('"
+				+nombre+"','"+manager+"''"+piloto1+"','"+apellido+"','"+nacionalidad+"')")>0) {
+	
 		this.manager = manager;
 		this.piloto = piloto;
 		this.coche = coche;
-		this.partida = partida;
+		ConexionBD.desconectar();
 	}
 
 
@@ -50,19 +58,12 @@ public class Equipo {
 	
 	
 	
-	public Partida getPartida() {
-		return partida;
-	}
 	
-	
-	public void setPartida(Partida partida) {
-		this.partida = partida;
-	}
 	
 	
 	@Override
 	public String toString() {
-		return "Equipo [manager=" + manager + ", piloto=" + piloto + ", coche=" + coche + ", partida=" + partida + "]";
+		return "Equipo [manager=" + manager + ", piloto=" + piloto + ", coche=" + coche +  "]";
 	}
 
 
