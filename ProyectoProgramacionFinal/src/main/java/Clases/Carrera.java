@@ -1,7 +1,11 @@
 package Clases;
 
 import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import Utils.ConexionBD;
 
 public class Carrera {
 	private Date fecha;
@@ -14,10 +18,23 @@ public class Carrera {
 
 	public Carrera(Date fecha, ArrayList<Circuito> circuito, ArrayList<Piloto> piloto) {
 		super();
-		this.fecha = fecha;
-		this.circuito = circuito;
-		this.piloto = piloto;
+		
+			Statement smt = ConexionBD.conectar();
+		
+		if (smt.executeUpdate("insert into carrera (fecha,ArrayList<Circuito>circuito,ArrayList<Piloto>piloto = " + numChip + " WHERE humano = '" + this.numChip + "';")
+				> 0
+		) 
+		{
+			this.numChip = numChip;
+		} else {
+			ConexionBD.desconectar();
+			throw new SQLException("Numero de chip incorrecto o duplicado.");
+		}
+		
+		ConexionBD.desconectar();
 	}
+
+		
 
 
 	public Date getFecha() {

@@ -28,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class PantallaLogin extends JPanel {
 	
@@ -44,6 +45,7 @@ private	Ventana ventana;
 		setLayout(null);
 		
 		JButton botonLogin = new BotonRojo("Login");
+		botonLogin.setForeground(Color.WHITE);
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -52,41 +54,46 @@ private	Ventana ventana;
 			
 		});
 		botonLogin.setToolTipText("Pincha aqu\u00ED para iniciar sesi\u00F3n");
-		botonLogin.setBounds(66, 205, 160, 44);
+		botonLogin.setBounds(233, 398, 160, 44);
 		this.add(botonLogin);
 		
 		JButton botonRegistro = new BotonAzul("Registrarse");
+		botonRegistro.setForeground(Color.WHITE);
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.irAPantalla("registro");
 			}
 		});
-		botonRegistro.setBounds(275, 204, 143, 46);
+		botonRegistro.setBounds(464, 397, 143, 46);
 		add(botonRegistro);
 		
 		JLabel etiquetaTitulo = new JLabel("Iniciar Sesi\u00F3n");
+		etiquetaTitulo.setForeground(Color.WHITE);
+		etiquetaTitulo.setBackground(Color.WHITE);
 		etiquetaTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaTitulo.setFont(new Font("Miriam Libre", Font.ITALIC, 27));
-		etiquetaTitulo.setBounds(10, 11, 480, 44);
+		etiquetaTitulo.setBounds(175, 10, 480, 44);
 		add(etiquetaTitulo);
 		
 		JLabel EtiquetaEmail = new JLabel("Email");
+		EtiquetaEmail.setForeground(Color.WHITE);
 		EtiquetaEmail.setHorizontalAlignment(SwingConstants.TRAILING);
-		EtiquetaEmail.setBounds(84, 80, 46, 14);
+		EtiquetaEmail.setBounds(270, 118, 46, 14);
 		add(EtiquetaEmail);
 		
 		JLabel EtiquetaPass = new JLabel("Contrase\u00F1a");
-		EtiquetaPass.setBounds(84, 119, 85, 14);
+		EtiquetaPass.setForeground(Color.WHITE);
+		EtiquetaPass.setBounds(270, 177, 85, 14);
 		add(EtiquetaPass);
 		
 		campoEmail = new JTextField();
-		campoEmail.setBounds(179, 77, 175, 20);
+		campoEmail.setBounds(395, 116, 175, 20);
 		add(campoEmail);
 		campoEmail.setColumns(10);
 		
 		campoContraseña = new JPasswordField();
-		campoContraseña.setBounds(179, 116, 175, 20);
+		campoContraseña.setBounds(395, 175, 175, 20);
 		add(campoContraseña);
 		
 		JButton botonLoguearse = new JButton("Loguearse");
@@ -94,8 +101,13 @@ private	Ventana ventana;
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		botonLoguearse.setBounds(257, 161, 85, 21);
+		botonLoguearse.setBounds(510, 223, 85, 21);
 		add(botonLoguearse);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PantallaLogin.class.getResource("/imagenes/F1_Unveil_Images_Final-1000-1200x900.jpg")));
+		lblNewLabel.setBounds(0, 0, 810, 620);
+		add(lblNewLabel);
 		
 		
 		botonLoguearse.addMouseListener(new MouseAdapter() {

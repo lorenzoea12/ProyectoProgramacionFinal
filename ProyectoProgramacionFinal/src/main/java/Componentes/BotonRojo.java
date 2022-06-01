@@ -18,8 +18,8 @@ public class BotonRojo extends JButton {
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				setForeground(new Color(200, 150, 150));
-				setBackground(new Color(50, 0, 0));
+				setForeground(new Color(0,0,0));
+				setBackground(new Color(255, 255, 255));
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 			@Override
@@ -30,8 +30,8 @@ public class BotonRojo extends JButton {
 		
 	}
 	private void estilosDefault() {
-		this.setForeground(new Color(102, 0, 153));
-		this.setBackground(new Color(255, 102, 255));
+		this.setForeground(new Color(255, 0, 0));
+		this.setBackground(new Color(0,0 ,0));
 		this.setFocusable(false);
 		this.setBorder(new MatteBorder(3,3,3,3,new Color(200,0,0)));
 		this.setFont(new Font("MV Boli", Font.BOLD, 20));

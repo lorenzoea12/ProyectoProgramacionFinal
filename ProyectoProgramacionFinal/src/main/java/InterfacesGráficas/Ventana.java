@@ -24,13 +24,13 @@ import Clases.Usuario;
 			this.pantallas.put("login", new PantallaLogin(this));
 			this.pantallas.put("registro", new PantallaRegistro(this));
 			
-			this.setSize(500,300);
+			this.setSize(810,620);
 			this.setIconImage(new ImageIcon("./iconos/liluzi.jpg").getImage());
 			this.setTitle("Ejemplo interfaces");
 			this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			this.setAlwaysOnTop(true);//superpone siempre la ventana
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);//importante para que se salga al cerrar la ventana
-			
+			this.setResizable(false);
 			//this.setEnabled(false); te bloquea la ventana no se puede cerrar
 			this.setLocationRelativeTo(null);//centra la ventana
 			

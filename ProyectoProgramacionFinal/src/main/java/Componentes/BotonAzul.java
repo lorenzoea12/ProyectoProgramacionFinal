@@ -13,8 +13,8 @@ public class BotonAzul extends BotonRojo {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				setForeground(new Color(100, 100, 200));
-				setBackground(new Color(0, 0, 50));
+				setForeground(new Color(0, 0, 0));
+				setBackground(new Color(255, 255, 255));
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
@@ -26,8 +26,8 @@ public class BotonAzul extends BotonRojo {
 	}
 
 	private void estilosDefault() {
-		this.setForeground(new Color(0, 0, 153));
-		this.setBackground(new Color(102, 100, 200));
+		this.setForeground(new Color(255, 0, 0));
+		this.setBackground(new Color(0, 0, 0));
 	}
 
 }

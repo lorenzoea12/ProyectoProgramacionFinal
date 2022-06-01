@@ -23,6 +23,7 @@ import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 
 public class PantallaRegistro extends JPanel {
 	private Ventana ventana;
@@ -31,107 +32,63 @@ public class PantallaRegistro extends JPanel {
 	private JTextField campoEmail;
 		
 	public PantallaRegistro(Ventana v) {
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 148, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		setLayout(null);
 		
 		JLabel tituloRegistro = new JLabel("Registro ");
+		tituloRegistro.setBounds(351, 2, 170, 41);
 		tituloRegistro.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 36));
-		GridBagConstraints gbc_tituloRegistro = new GridBagConstraints();
-		gbc_tituloRegistro.anchor = GridBagConstraints.WEST;
-		gbc_tituloRegistro.gridwidth = 2;
-		gbc_tituloRegistro.insets = new Insets(0, 0, 5, 5);
-		gbc_tituloRegistro.gridx = 1;
-		gbc_tituloRegistro.gridy = 1;
-		add(tituloRegistro, gbc_tituloRegistro);
+		add(tituloRegistro);
 		
 		JLabel etiquetaNombre = new JLabel("Email");
-		GridBagConstraints gbc_etiquetaNombre = new GridBagConstraints();
-		gbc_etiquetaNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_etiquetaNombre.gridx = 1;
-		gbc_etiquetaNombre.gridy = 2;
-		add(etiquetaNombre, gbc_etiquetaNombre);
+		etiquetaNombre.setBounds(287, 87, 36, 16);
+		add(etiquetaNombre);
 		
 		campoEmail = new JTextField();
+		campoEmail.setBounds(364, 86, 222, 19);
 		campoEmail.setColumns(10);
-		GridBagConstraints gbc_campoEmail = new GridBagConstraints();
-		gbc_campoEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_campoEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoEmail.gridx = 2;
-		gbc_campoEmail.gridy = 2;
-		add(campoEmail, gbc_campoEmail);
+		add(campoEmail);
 		
 		JLabel etiquetaEmail = new JLabel("Nombre:");
-		GridBagConstraints gbc_etiquetaEmail = new GridBagConstraints();
-		gbc_etiquetaEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_etiquetaEmail.gridx = 1;
-		gbc_etiquetaEmail.gridy = 3;
-		add(etiquetaEmail, gbc_etiquetaEmail);
+		etiquetaEmail.setBounds(287, 154, 40, 13);
+		add(etiquetaEmail);
 		
 		campoNombre = new JTextField();
-		GridBagConstraints gbc_campoNombre = new GridBagConstraints();
-		gbc_campoNombre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_campoNombre.gridx = 2;
-		gbc_campoNombre.gridy = 3;
-		add(campoNombre, gbc_campoNombre);
+		campoNombre.setBounds(364, 151, 222, 19);
+		add(campoNombre);
 		campoNombre.setColumns(10);
 		
 		JLabel etiquetaPass = new JLabel("Contrase\u00F1a: ");
-		GridBagConstraints gbc_etiquetaPass = new GridBagConstraints();
-		gbc_etiquetaPass.insets = new Insets(0, 0, 5, 5);
-		gbc_etiquetaPass.gridx = 1;
-		gbc_etiquetaPass.gridy = 4;
-		add(etiquetaPass, gbc_etiquetaPass);
+		etiquetaPass.setBounds(287, 231, 59, 13);
+		add(etiquetaPass);
 		
 		campoPass = new JPasswordField();
-		GridBagConstraints gbc_campoPass = new GridBagConstraints();
-		gbc_campoPass.insets = new Insets(0, 0, 5, 5);
-		gbc_campoPass.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoPass.gridx = 2;
-		gbc_campoPass.gridy = 4;
-		add(campoPass, gbc_campoPass);
+		campoPass.setBounds(364, 228, 222, 19);
+		add(campoPass);
 		
 	
 		
 		JButton botonRegistrarse = new JButton("Registrarse");
+		botonRegistrarse.setBounds(524, 313, 85, 21);
 		
 		botonRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		GridBagConstraints gbc_botonRegistrarse = new GridBagConstraints();
-		gbc_botonRegistrarse.gridwidth = 2;
-		gbc_botonRegistrarse.insets = new Insets(0, 0, 5, 0);
-		gbc_botonRegistrarse.gridx = 2;
-		gbc_botonRegistrarse.gridy = 6;
-		add(botonRegistrarse, gbc_botonRegistrarse);
-		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.gridwidth = 2;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 8;
-		add(comboBox, gbc_comboBox);
+		add(botonRegistrarse);
 		
 		JButton botonAtras = new JButton("Atras");
+		botonAtras.setBounds(542, 382, 95, 41);
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.irAPantalla("login");
 			}
 		});
-		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
-		gbc_botonAtras.anchor = GridBagConstraints.EAST;
-		gbc_botonAtras.insets = new Insets(0, 0, 5, 5);
-		gbc_botonAtras.gridx = 2;
-		gbc_botonAtras.gridy = 12;
-		add(botonAtras, gbc_botonAtras);
+		add(botonAtras);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(33, 67, 450, 241);
+		add(lblNewLabel);
 		ventana=v;
 		
 	
@@ -161,5 +118,4 @@ public class PantallaRegistro extends JPanel {
 		});
 		
 	}
-
 }
