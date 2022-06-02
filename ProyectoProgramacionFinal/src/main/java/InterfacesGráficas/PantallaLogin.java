@@ -129,7 +129,8 @@ private	Ventana ventana;
 					JOptionPane.showMessageDialog(ventana,
 							"Bienvenido"+ventana.usuarioLogado.getNombre(),
 							"Inicio de sesión con éxito", JOptionPane.INFORMATION_MESSAGE);
-					ventana.irAPantalla("listarUsuarios");
+					ventana.cambiarPanel("menu");
+				
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

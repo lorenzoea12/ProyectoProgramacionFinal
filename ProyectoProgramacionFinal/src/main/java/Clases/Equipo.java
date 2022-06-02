@@ -1,5 +1,6 @@
 package Clases;
 
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -14,17 +15,23 @@ public class Equipo extends ElementoConNombre {
 
 
 
-	public Equipo(String nombre, String manager, ArrayList<Piloto> piloto, ArrayList<Coche> coche) {
+	public Equipo(String nombre, String manager, ArrayList<Piloto> piloto, ArrayList<Coche> coche) throws SQLException {
 		super(nombre);
 		Statement smt = ConexionBD.conectar();
 		if(smt.executeUpdate("insert into persona (nombre,manager,piloto1,piloto2,coche1,coche2) values  ('"
-				+nombre+"','"+manager+"''"+piloto1+"','"+apellido+"','"+nacionalidad+"')")>0) {
+				+nombre+"','"+manager+"''"+piloto.get(0).getNombre()+"','"+piloto.get(1).getNombre()+"','"+coche.get(0).getNombre()+"','"+coche.get(1).getNombre()+"')")>0) {
 	
 		this.manager = manager;
 		this.piloto = piloto;
 		this.coche = coche;
 		ConexionBD.desconectar();
+		
+	}else {
+		ConexionBD.desconectar();
+		throw new SQLException("No se ha podido crear el equipo correctamente");
+		
 	}
+}
 
 
 	public String getManager() {
