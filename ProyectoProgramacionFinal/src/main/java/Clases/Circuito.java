@@ -81,7 +81,7 @@ public Circuito(int numeroCircuito) throws SQLException {
 	
 	public void setnumeroCircuito(byte numeroCircuito) throws SQLException {
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update circuito set numeroCircuito="+numeroCircuito+" where NumeroChip="+this.numeroCircuito+"")>0) {
+		if(smt.executeUpdate("Update circuito set numeroCircuito="+numeroCircuito+" where  numeroCircuito="+this.numeroCircuito+"")>0) {
 			this.numeroCircuito=numeroCircuito;
 			ConexionBD.desconectar();
 		}else {
@@ -109,12 +109,12 @@ public Circuito(int numeroCircuito) throws SQLException {
 			throw new LugarInvalido (" El lugar no puede estar vacio porfavor ");
 		}
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update circuito set numeroCircuito="+lugar+" where NumeroChip="+this.numeroCircuito+"")>0) {
+		if(smt.executeUpdate("Update circuito set lugar ="+lugar+" where numeroCircuito="+this.numeroCircuito+"")>0) {
 			this.lugar=lugar;
 			ConexionBD.desconectar();
 		}else {
 			ConexionBD.desconectar();
-			throw new SQLException(" No se puedo el lugar del circuito ");
+			throw new SQLException(" No se pudo cambiar  el lugar del circuito ");
 		}
 }	
 		
@@ -127,7 +127,7 @@ public Circuito(int numeroCircuito) throws SQLException {
 	
 	public void setRectas(byte rectas) throws SQLException {
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update  circuito set numeroCircuito="+rectas+" where NumeroChip="+this.numeroCircuito+"")>0) {
+		if(smt.executeUpdate("Update  circuito set rectas="+rectas+" where numeroCircuito="+this.numeroCircuito+"")>0) {
 			this.rectas=rectas;
 			ConexionBD.desconectar();
 		}else {
@@ -155,7 +155,7 @@ public Circuito(int numeroCircuito) throws SQLException {
 		}
 		
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update cirucito set numeroCircuito="+curvas+" where NumeroChip="+this.numeroCircuito+"")>0) {
+		if(smt.executeUpdate("Update cirucito set curvas ="+curvas+" where numeroCircuito="+this.numeroCircuito+"")>0) {
 			this.curvas=curvas;
 			ConexionBD.desconectar();
 		}else {
@@ -174,7 +174,7 @@ public Circuito(int numeroCircuito) throws SQLException {
 	
 	public void setDificultad(String dificultad) throws SQLException {
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update circuito set numeroCircuito="+dificultad+" where NumeroChip="+this.numeroCircuito+"")>0) {
+		if(smt.executeUpdate("Update circuito set dificuitad ="+dificultad+" where numeroCircuito="+this.numeroCircuito+"")>0) {
 			this.dificultad=dificultad;
 			ConexionBD.desconectar();
 		}else {
@@ -192,7 +192,7 @@ public Circuito(int numeroCircuito) throws SQLException {
 	public void setLongitud(float longitud) throws SQLException {
 		
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update circuito set numeroCircuito="+longitud+" where NumeroChip="+this.numeroCircuito+"")>0) {
+		if(smt.executeUpdate("Update circuito set longitud="+longitud+" where numeroCircuito="+this.numeroCircuito+"")>0) {
 			this.longitud=longitud;
 			ConexionBD.desconectar();
 		}else {

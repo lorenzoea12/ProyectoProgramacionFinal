@@ -1,6 +1,10 @@
 package Clases;
 
+import java.sql.Array;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -9,7 +13,7 @@ import Utils.ConexionBD;
 public class Equipo extends ElementoConNombre {
 	private String manager;
 	private ArrayList<Piloto>piloto;
-	private ArrayList<Coche>coche;
+	private ArrayList<Coche> coche;
 	
 	
 
@@ -32,6 +36,21 @@ public class Equipo extends ElementoConNombre {
 		
 	}
 }
+	
+public Equipo(int nombre) throws SQLException {
+		
+		Statement smt = ConexionBD.conectar();
+
+			ResultSet cursor = smt.executeQuery("SELECT * FROM equipo WHERE nombre =" + nombre +";");
+			
+			if (cursor.next() ) {
+				this.manager=cursor.getString("manager");
+				this.piloto = (ArrayList<Piloto>) cursor.getArray("piloto");
+				this.coche = (ArrayList<Coche>) cursor.getArray("coche");
+				ConexionBD.desconectar();
+			}			
+	}
+	
 
 
 	public String getManager() {
@@ -39,9 +58,18 @@ public class Equipo extends ElementoConNombre {
 	}
 	
 	
-	public void setManager(String manager) {
-		this.manager = manager;
-	}
+	public void setManager(String manager) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update equipo set manager="+manager+" where nombre="+this.nombre+"")>0) {
+			this.manager=manager;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el  manager");
+		}
+}	
+	
+	
 	
 	
 	public ArrayList<Piloto> getPiloto() {
@@ -49,9 +77,18 @@ public class Equipo extends ElementoConNombre {
 	}
 	
 	
-	public void setPiloto(ArrayList<Piloto> piloto) {
-		this.piloto = piloto;
-	}
+	public void setPiloto(ArrayList<Piloto> piloto) throws SQLException {
+		
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update equipo set piloto="+piloto+" where nombre="+this.nombre+"")>0) {
+			this.piloto=piloto;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo actualizar los pilotos del equipo ");
+		}
+}	
+		
 	
 	
 	public ArrayList<Coche> getCoche() {
@@ -59,10 +96,17 @@ public class Equipo extends ElementoConNombre {
 	}
 	
 	
-	public void setCoche(ArrayList<Coche> coche) {
-		this.coche = coche;
-	}
-	
+	public void setCoche(ArrayList<Coche> coche) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update equipo set coche="+coche+" where NumeroChip="+this.nombre+"")>0) {
+			this.coche=coche;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo actualizar los coches del equipo  ");
+		}
+}	
+		
 	
 	
 	
