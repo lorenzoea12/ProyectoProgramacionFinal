@@ -92,6 +92,10 @@ public class Ventana extends JFrame {
             case"persona":
             	pantallas.put(panel, new PantallaPersona(this));
             	break;
+            	
+            case"circuito":
+            	pantallas.put(panel, new PantallaCircuito(this));
+            	break;
 
             }
         }
