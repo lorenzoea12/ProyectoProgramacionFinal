@@ -46,6 +46,10 @@ private	Ventana ventana;
 		setLayout(null);
 		
 		JButton botonLogin = new BotonRojo("Login");
+		botonLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		botonLogin.setForeground(Color.WHITE);
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
@@ -102,7 +106,7 @@ private	Ventana ventana;
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		botonLoguearse.setBounds(510, 223, 85, 21);
+		botonLoguearse.setBounds(471, 215, 143, 34);
 		add(botonLoguearse);
 		
 		JLabel lblNewLabel = new JLabel("");

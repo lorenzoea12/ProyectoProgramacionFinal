@@ -30,6 +30,17 @@ public class PantallaMenu extends JPanel {
 				ventana.cambiarPanel("login");
 			}
 		});
+		
+		JButton botonCoche = new JButton("Coche");
+		botonCoche.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPanel("coche");
+			}
+		});
+		botonCoche.setBackground(Color.WHITE);
+		botonCoche.setBounds(650, 303, 105, 41);
+		add(botonCoche);
 		btnNewButton.setBounds(585, 438, 85, 21);
 		add(btnNewButton);
 		
@@ -54,6 +65,12 @@ public class PantallaMenu extends JPanel {
 		add(botonCircuito);
 		
 		JButton botonPiloto = new JButton("Piloto");
+		botonPiloto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPanel("piloto");
+			}
+		});
 		botonPiloto.setBorderPainted(false);
 		botonPiloto.setBackground(Color.WHITE);
 		botonPiloto.setForeground(Color.BLACK);

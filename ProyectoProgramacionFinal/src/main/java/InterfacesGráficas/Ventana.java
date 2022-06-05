@@ -28,8 +28,8 @@ public class Ventana extends JFrame {
 		this.pantallas.put("registro", new PantallaRegistro(this));
 
 		this.setSize(810, 620);
-		this.setIconImage(new ImageIcon("./iconos/liluzi.jpg").getImage());
-		this.setTitle("Ejemplo interfaces");
+		this.setIconImage(new ImageIcon("./imagen/iconoF1.jpg").getImage());
+		this.setTitle("Manager Formula 1");
 		this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		this.setAlwaysOnTop(true);// superpone siempre la ventana
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);// importante para que se salga al cerrar la ventana
@@ -96,6 +96,14 @@ public class Ventana extends JFrame {
             case"circuito":
             	pantallas.put(panel, new PantallaCircuito(this));
             	break;
+            	
+            case"piloto":
+            	pantallas.put(panel, new PantallaPiloto(this));
+            	break;
+            case"coche":
+            	pantallas.put(panel,new PantallaCoche(this));
+            	break;
+            
 
             }
         }

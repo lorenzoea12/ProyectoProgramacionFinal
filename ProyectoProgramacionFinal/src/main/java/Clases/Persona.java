@@ -2,6 +2,7 @@ package Clases;
 
 import java.sql.ResultSet;
 
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -12,25 +13,25 @@ import Utils.ConexionBD;
 
 public class Persona extends ElementoConNombre {
 	private String dni;
-	private byte edad;
+	private int edad;
 	private String apellido;
 	private String nacionalidad;
 	
 	
 
 
-	public Persona(String nombre, byte edad, String apellido, String nacionalidad, String dni) throws SQLException, ApellidoInvalido, EdadInvalida {
+	public Persona(String nombre, int edad, String apellido, String nacionalidad, String dni) throws SQLException, ApellidoInvalido, EdadInvalida {
 		super(nombre);
 		
 		if(!edadValida(edad)) {
-			throw new EdadInvalida("La edad no puede ser menos a 12 años ");
+			throw new EdadInvalida("La edad no puede ser menor a 12 años ");
 		}
 		if(!apellidoValido(apellido)) {
 			throw new ApellidoInvalido("El apellido no puede estar vacio");
 		}
 		Statement smt=ConexionBD.conectar();
 		if(smt.executeUpdate("insert into persona (dni,nombre,edad,apellido,nacionalidad) values  ('"
-				+dni+"','"+nombre+"''"+edad+"','"+apellido+"','"+nacionalidad+"')")>0) {
+				+dni+"','"+nombre+"','"+edad+"','"+apellido+"','"+nacionalidad+"')")>0) {
 			this.dni=dni;
 			this.edad = edad;
 			this.apellido = apellido;
@@ -66,7 +67,7 @@ public class Persona extends ElementoConNombre {
 }	
 		
 	
-	private static boolean edadValida (byte edad) {
+	private static boolean edadValida (int edad) {
 		return !(edad<12);
 	}
 	
@@ -74,12 +75,12 @@ public class Persona extends ElementoConNombre {
 	
 
 
-	public byte getEdad() {
+	public int getEdad() {
 		return edad;
 	}
 	
 	
-	public void setEdad(byte edad) throws SQLException, EdadInvalida {
+	public void setEdad(int edad) throws SQLException, EdadInvalida {
 		if(!edadValida(edad)) {
 			throw new EdadInvalida("La edad no puede ser menos a 12 años ");
 		}

@@ -127,7 +127,7 @@ public class PantallaPersona extends JPanel {
 				ventana.irAPantalla("menu");
 			
 				try {
-					new Persona(dni,(byte)edad,nombre,apellido,nacionalidad);
+					new Persona(dni,edad,nombre,apellido,nacionalidad);
 				} catch (SQLException | ApellidoInvalido | EdadInvalida e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
