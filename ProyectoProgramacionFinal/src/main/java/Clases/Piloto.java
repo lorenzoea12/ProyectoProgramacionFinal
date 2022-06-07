@@ -1,9 +1,11 @@
 package Clases;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import Excepciones.ApellidoInvalido;
 import Excepciones.EdadInvalida;
+import Utils.ConexionBD;
 
 public class Piloto extends Persona {
 	private Equipo equipo;
@@ -11,18 +13,30 @@ public class Piloto extends Persona {
 	private byte resistencia;
 	private byte experiencia;
 	
-	
-
-	
 
 
-	public Piloto(String nombre, byte edad, String apellido, String nacionalidad, String dni, Equipo equipo,
-			Coche coche, byte resistencia, byte experiencia) throws SQLException, ApellidoInvalido, EdadInvalida {
+	public Piloto(String nombre, int edad, String apellido, String nacionalidad, String dni, Equipo equipo, Coche coche,
+			byte resistencia, byte experiencia) throws SQLException, ApellidoInvalido, EdadInvalida {
 		super(nombre, edad, apellido, nacionalidad, dni);
-		this.equipo = equipo;
-		this.coche = coche;
-		this.resistencia = resistencia;
-		this.experiencia = experiencia;
+		
+		Statement smt = ConexionBD.conectar();
+		if(smt.executeUpdate("insert into persona (equipo,n,edad,apellido,nacionalidad) values  ('"
+				+equipo.getNombre()+"','"+coche.getNombre()+"','"+resistencia+"','"+experiencia+"')")>0) {
+			this.equipo = equipo;
+			this.coche = coche;
+			this.resistencia = resistencia;
+			this.experiencia = experiencia;
+			ConexionBD.desconectar();
+			
+		}
+	
+	
+		
+		
+	
+		
+		
+		
 	}
 
 

@@ -47,7 +47,7 @@ public class PantallaPersona extends JPanel {
 		Dni.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		Dni.setForeground(Color.WHITE);
 		Dni.setHorizontalAlignment(SwingConstants.CENTER);
-		Dni.setBounds(30, 198, 45, 13);
+		Dni.setBounds(49, 114, 45, 13);
 		add(Dni);
 		
 		campoDni = new JTextField();
@@ -59,11 +59,11 @@ public class PantallaPersona extends JPanel {
 		Edad.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		Edad.setForeground(Color.WHITE);
 		Edad.setHorizontalAlignment(SwingConstants.CENTER);
-		Edad.setBounds(30, 244, 45, 13);
+		Edad.setBounds(49, 205, 45, 13);
 		add(Edad);
 		
 		campoEdad = new JTextField();
-		campoEdad.setBounds(136, 243, 174, 19);
+		campoEdad.setBounds(136, 204, 174, 19);
 		add(campoEdad);
 		campoEdad.setColumns(10);
 		
@@ -71,16 +71,16 @@ public class PantallaPersona extends JPanel {
 		Nombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		Nombre.setForeground(Color.WHITE);
 		Nombre.setHorizontalAlignment(SwingConstants.CENTER);
-		Nombre.setBounds(30, 116, 64, 13);
+		Nombre.setBounds(49, 161, 64, 13);
 		add(Nombre);
 		
 		campoNombre = new JTextField();
-		campoNombre.setBounds(136, 115, 174, 19);
+		campoNombre.setBounds(136, 160, 174, 19);
 		add(campoNombre);
 		campoNombre.setColumns(10);
 		
 		campoApellido = new JTextField();
-		campoApellido.setBounds(136, 197, 174, 19);
+		campoApellido.setBounds(136, 113, 174, 19);
 		add(campoApellido);
 		campoApellido.setColumns(10);
 		
@@ -88,13 +88,13 @@ public class PantallaPersona extends JPanel {
 		Apellido.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		Apellido.setForeground(Color.WHITE);
 		Apellido.setHorizontalAlignment(SwingConstants.CENTER);
-		Apellido.setBounds(30, 161, 64, 13);
+		Apellido.setBounds(49, 244, 64, 13);
 		add(Apellido);
 		
 		JLabel Nacionalidad = new JLabel("Nacionalidad");
 		Nacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		Nacionalidad.setForeground(Color.WHITE);
-		Nacionalidad.setBounds(30, 278, 83, 13);
+		Nacionalidad.setBounds(43, 278, 83, 13);
 		add(Nacionalidad);
 		
 		JButton btnNewButton = new JButton("Atras");
@@ -108,7 +108,7 @@ public class PantallaPersona extends JPanel {
 		add(btnNewButton);
 		
 		campoNacionalidad = new JTextField();
-		campoNacionalidad.setBounds(136, 160, 174, 19);
+		campoNacionalidad.setBounds(136, 243, 174, 19);
 		add(campoNacionalidad);
 		campoNacionalidad.setColumns(10);
 		
@@ -127,7 +127,7 @@ public class PantallaPersona extends JPanel {
 				ventana.irAPantalla("menu");
 			
 				try {
-					new Persona(dni,edad,nombre,apellido,nacionalidad);
+					new Persona(nacionalidad,edad,apellido,nombre,dni);
 				} catch (SQLException | ApellidoInvalido | EdadInvalida e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

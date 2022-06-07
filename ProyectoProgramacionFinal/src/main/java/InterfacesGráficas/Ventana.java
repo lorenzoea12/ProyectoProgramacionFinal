@@ -103,7 +103,12 @@ public class Ventana extends JFrame {
             case"coche":
             	pantallas.put(panel,new PantallaCoche(this));
             	break;
-            
+            case"carrera":
+            	pantallas.put(panel,new PantallaCarrera(this));
+            	break;
+            case"equipo":
+            	pantallas.put(panel, new PantallaEquipo(this));
+            	break;
 
             }
         }
