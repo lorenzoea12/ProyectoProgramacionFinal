@@ -36,7 +36,7 @@ public class Persona extends ElementoConNombre {
 			this.edad = edad;
 			this.apellido = apellido;
 			this.nacionalidad = nacionalidad;
-		ConexionBD.desconectar();
+		
 			
 			
 		}else {
@@ -47,6 +47,24 @@ public class Persona extends ElementoConNombre {
 		
 
 	}
+	
+	public Persona(String dni) throws SQLException {
+		Statement smt = ConexionBD.conectar();
+		try {
+		ResultSet cursor = smt.executeQuery("SELECT * FROM persona WHERE dni =" + dni +";");
+		
+		if (cursor.next() ) {
+			this.edad = cursor.getInt("edad");
+			this.apellido = cursor.getString("apellido");
+			this.nacionalidad = cursor.getString("nacionalidad");
+		}	
+	} finally {
+		ConexionBD.desconectar();
+	}
+
+}
+		
+	
 	
 	
 	

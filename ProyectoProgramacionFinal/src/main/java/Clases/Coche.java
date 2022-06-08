@@ -1,5 +1,12 @@
 package Clases;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import Enums.Neumaticos;
+import Utils.ConexionBD;
+
 public class Coche  {
 	private String nombre;
 	private Equipo escuderia;
@@ -8,6 +15,55 @@ public class Coche  {
 	private byte caballos;
 	private Piloto piloto;
 	private byte maniobrabilidad;
+
+	
+	//retocar escuderia el get y el get de pilotos 
+	public Coche( String nombre,Equipo escuderia, String color, Enum neumaticos, byte caballos, Piloto piloto, byte maniobrabilidad) throws SQLException {
+		super();
+
+		Statement smt=ConexionBD.conectar();
+		
+		if(smt.executeUpdate("insert into coche (nombre,nombreEscuderia,color,caballos,neumaticos,nombrePiloto,maniobralidad values('"
+				+nombre+"','"+escuderia.getNombre()+"','"+color+"','"+caballos+"','"+neumaticos.toString()+"','"+piloto.getNombre()+"','"+maniobrabilidad+"')")>0) {
+			this.nombre=nombre;
+			this.escuderia = escuderia;
+			this.color = color;
+			this.neumaticos = neumaticos;
+			this.caballos = caballos;
+			this.piloto = piloto;
+			this.maniobrabilidad = maniobrabilidad;
+		
+		
+			
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se ha podido insertar ");
+		}
+		
+	}
+	
+	public Coche(String nombre) {
+		Statement smt = ConexionBD.conectar();
+		try {
+			ResultSet cursor = smt.executeQuery("SELECT * FROM coche WHERE nombre =" + nombre +";");
+			
+			if (cursor.next() ) {
+				
+				this.escuderia=cursor.getEquipo("escuderia")
+				this.rectas = cursor.getByte("rectas");
+				this.curvas = cursor.getByte("curvas");
+				this.dificultad=cursor.getString("dificultad");
+				this.longitud=cursor.getFloat("longitud");
+			
+			}	
+		} finally {
+			ConexionBD.desconectar();
+		}
+	}
+	
+	}
+		
+
 	
 	
 	
@@ -112,17 +168,6 @@ public class Coche  {
 
 
 
-
-	public Coche( String nombre,Equipo escuderia, String color, Enum neumaticos, byte caballos, Piloto piloto, byte maniobrabilidad) {
-		super();
-		this.nombre=nombre;
-		this.escuderia = escuderia;
-		this.color = color;
-		this.neumaticos = neumaticos;
-		this.caballos = caballos;
-		this.piloto = piloto;
-		this.maniobrabilidad = maniobrabilidad;
-	}
 
 
 	

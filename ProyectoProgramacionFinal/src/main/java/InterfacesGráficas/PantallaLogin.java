@@ -1,6 +1,7 @@
 package InterfacesGráficas;
 
 import javax.swing.JPanel;
+
 import java.awt.SystemColor;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -20,12 +21,14 @@ import Excepciones.ContraseñaIncorrectaException;
 import Excepciones.ContraseñaInvalida;
 import Excepciones.NombreInvalidoException;
 import Excepciones.UsuarioNoExisteException;
+import Hilos.MusicaFondo;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -41,7 +44,8 @@ private	Ventana ventana;
 	
 	public PantallaLogin(Ventana v) {
 		
-		
+		MusicaFondo musica= new MusicaFondo(new File("./musica/formula1.wav"));
+		musica.start();
 		this.ventana=v;
 		setLayout(null);
 		

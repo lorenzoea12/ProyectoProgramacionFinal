@@ -21,7 +21,7 @@ private Ventana ventana;
 	     		ventana.cambiarPanel("menu");
 	     	}
 	     });
-	     botonAtras.setBounds(673, 574, 85, 21);
+	     botonAtras.setBounds(683, 537, 85, 29);
 	     add(botonAtras);
 	     
 	     JLabel lblNewLabel = new JLabel("New label");

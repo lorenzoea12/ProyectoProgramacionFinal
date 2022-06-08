@@ -29,7 +29,7 @@ public class PantallaCarrera extends JPanel {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblNewLabel_1.setBounds(342, 0, 136, 40);
 		add(lblNewLabel_1);
-		botonAtras.setBounds(676, 574, 85, 21);
+		botonAtras.setBounds(671, 506, 85, 30);
 		add(botonAtras);
 		
 		JLabel lblNewLabel = new JLabel("New label");

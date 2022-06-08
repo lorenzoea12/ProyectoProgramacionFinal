@@ -9,6 +9,7 @@ import Excepciones.EdadInvalida;
 import Utils.ConexionBD;
 
 public class Piloto extends Persona {
+	private byte id;
 	private Equipo equipo;
 	private Coche coche;
 	private byte resistencia;
@@ -16,10 +17,10 @@ public class Piloto extends Persona {
 	
 
 
-	public Piloto(String nombre, int edad, String apellido, String nacionalidad, String dni, Equipo equipo, Coche coche,
+	public Piloto(String nombre,byte id, int edad, String apellido, String nacionalidad, String dni, Equipo equipo, Coche coche,
 			byte resistencia, byte experiencia) throws SQLException, ApellidoInvalido, EdadInvalida {
 		super(nombre, edad, apellido, nacionalidad, dni);
-		
+		//retocar el get de equipo
 		Statement smt = ConexionBD.conectar();
 		if(smt.executeUpdate("insert into persona (nombre,edad,apellido,nacionalidad,dni,equipo,coche,edad,apellido,nacionalidad) values  ('"
 				+nombre+"','"+edad+"','"+apellido+"','"+nacionalidad+"','"+dni+"','"+equipo.getNombre()+"','"+coche.getNombre()+"','"+resistencia+"','"+experiencia+"')")>0) {

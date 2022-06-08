@@ -41,7 +41,7 @@ public Circuito() {
 			this.curvas = curvas;
 			this.dificultad = dificultad;
 			this.longitud = longitud;
-			ConexionBD.desconectar();
+		
 		
 		}else {
 			ConexionBD.desconectar();
@@ -54,7 +54,7 @@ public Circuito() {
 public Circuito(int numeroCircuito) throws SQLException {
 		
 		Statement smt = ConexionBD.conectar();
-
+		try {
 			ResultSet cursor = smt.executeQuery("SELECT * FROM circuito WHERE numeroCircuito =" + numeroCircuito +";");
 			
 			if (cursor.next() ) {
@@ -64,8 +64,11 @@ public Circuito(int numeroCircuito) throws SQLException {
 				this.curvas = cursor.getByte("curvas");
 				this.dificultad=cursor.getString("dificultad");
 				this.longitud=cursor.getFloat("longitud");
-				ConexionBD.desconectar();
-			}			
+			
+			}	
+		} finally {
+			ConexionBD.desconectar();
+		}
 	}
 	
 
