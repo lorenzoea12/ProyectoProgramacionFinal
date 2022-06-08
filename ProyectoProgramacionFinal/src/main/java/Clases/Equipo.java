@@ -20,7 +20,7 @@ public class Equipo extends ElementoConNombre {
 				+ coche.get(0).getNombre() + "','" + coche.get(1).getNombre() + "')") > 0) {
 
 			this.manager = manager;
-			this.piloto = piloto;
+		
 			this.coche = coche;
 			ConexionBD.desconectar();
 
