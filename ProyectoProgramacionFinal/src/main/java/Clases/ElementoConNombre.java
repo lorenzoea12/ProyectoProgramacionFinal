@@ -1,5 +1,7 @@
 package Clases;
 
+import java.sql.SQLException;
+
 public class ElementoConNombre {
 	public String nombre;
 	
@@ -24,7 +26,7 @@ public class ElementoConNombre {
 	
 	
 
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre)  {
 		this.nombre = nombre;
 	}
 	
