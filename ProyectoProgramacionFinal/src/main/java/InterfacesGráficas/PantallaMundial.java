@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JList;
 import javax.swing.ImageIcon;
+import javax.swing.JTextPane;
 
 public class PantallaMundial extends JPanel {
 	private Ventana ventana;
@@ -20,11 +21,12 @@ public class PantallaMundial extends JPanel {
 		this.ventana=v;
 		
 		JButton botonAtras = new JButton("Atras");
-		botonAtras.setBounds(711, 583, 71, 27);
+		botonAtras.setBounds(654, 537, 71, 27);
 		botonAtras.setBackground(Color.WHITE);
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+		
 				ventana.cambiarPanel("menu");
 			}
 		});

@@ -44,7 +44,9 @@ public class Equipo {
 	*/
 	
 	
-	
+	public Equipo() {
+		
+	}
 
 
 
@@ -213,6 +215,39 @@ public class Equipo {
 			throw new SQLException(" No se pudo cambiar el dni o ya estaba asiganado ");
 		}
 }	
+	
+	
+	public static ArrayList<Equipo> getTodos() {
+		ArrayList<Equipo> ret=new ArrayList<Equipo>();
+		
+		Statement smt=ConexionBD.conectar();
+		
+		try {
+			ResultSet cursor=smt.executeQuery("select * from Equipo");
+			while(cursor.next()) {
+				Equipo e=new Equipo();
+				e.nombre=cursor.getString("nombre");
+				e.manager=cursor.getString("manager");
+				e.nombrePiloto1=cursor.getString("nombrePiloto1");
+				e.nombrePiloto2=cursor.getString("nombrePiloto2");
+				e.nombreCoche1=cursor.getString("nombreCoche1");
+				e.nombreCoche2=cursor.getString("nombreCoche2");
+				
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		
+		ConexionBD.desconectar();
+		
+		return ret;
+	}
+
 	@Override
 	public String toString() {
 		return "Equipo [nombre=" + nombre + ", manager=" + manager + ", nombrePiloto1=" + nombrePiloto1

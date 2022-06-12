@@ -26,11 +26,11 @@ import java.awt.Color;
 public class PantallaPersona extends JPanel {
 	
 	private Ventana ventana;
-	private JTextField campoDni;
+	private JTextField campoNacionalidad;
 	private JTextField campoEdad;
 	private JTextField campoNombre;
+	private JTextField campoDni;
 	private JTextField campoApellido;
-	private JTextField campoNacionalidad;
 
 	public PantallaPersona(Ventana v) {
 		this.ventana=v;
@@ -51,10 +51,10 @@ public class PantallaPersona extends JPanel {
 		Dni.setBounds(49, 114, 45, 13);
 		add(Dni);
 		
-		campoDni = new JTextField();
-		campoDni.setBounds(136, 277, 174, 19);
-		add(campoDni);
-		campoDni.setColumns(10);
+		campoNacionalidad = new JTextField();
+		campoNacionalidad.setBounds(136, 277, 174, 19);
+		add(campoNacionalidad);
+		campoNacionalidad.setColumns(10);
 		
 		JLabel Edad = new JLabel("Edad");
 		Edad.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -80,10 +80,10 @@ public class PantallaPersona extends JPanel {
 		add(campoNombre);
 		campoNombre.setColumns(10);
 		
-		campoApellido = new JTextField();
-		campoApellido.setBounds(136, 113, 174, 19);
-		add(campoApellido);
-		campoApellido.setColumns(10);
+		campoDni = new JTextField();
+		campoDni.setBounds(136, 113, 174, 19);
+		add(campoDni);
+		campoDni.setColumns(10);
 		
 		JLabel Apellido = new JLabel("Apellido");
 		Apellido.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -108,10 +108,10 @@ public class PantallaPersona extends JPanel {
 		btnNewButton.setBounds(10, 321, 85, 21);
 		add(btnNewButton);
 		
-		campoNacionalidad = new JTextField();
-		campoNacionalidad.setBounds(136, 243, 174, 19);
-		add(campoNacionalidad);
-		campoNacionalidad.setColumns(10);
+		campoApellido = new JTextField();
+		campoApellido.setBounds(136, 243, 174, 19);
+		add(campoApellido);
+		campoApellido.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("Registrar");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -125,7 +125,7 @@ public class PantallaPersona extends JPanel {
 				String nacionalidad=campoNacionalidad.getText();
 				
 				JOptionPane.showMessageDialog(ventana,"Registro Completo","Registro",JOptionPane.PLAIN_MESSAGE );
-				ventana.irAPantalla("menu");
+				ventana.cambiarPanel("menu");
 			
 				try {
 					new Persona(dni,nombre,edad,apellido,nacionalidad);

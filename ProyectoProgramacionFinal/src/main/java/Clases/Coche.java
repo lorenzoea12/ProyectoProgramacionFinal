@@ -3,7 +3,7 @@ package Clases;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
 
 import Utils.ConexionBD;
 
@@ -16,6 +16,13 @@ public class Coche  {
 	private String nombrePiloto;
 	private byte maniobrabilidad;
 
+	
+	
+	
+	
+	public Coche() {
+		
+	}
 	
 	
 
@@ -207,6 +214,42 @@ public class Coche  {
 			throw new SQLException(" No se puedo el lugar del circuito ");
 		}
 }	
+	
+	
+	public static ArrayList<Coche> getTodos() {
+		ArrayList<Coche> ret=new ArrayList<Coche>();
+		
+		Statement smt=ConexionBD.conectar();
+		
+		try {
+			ResultSet cursor=smt.executeQuery("select * from Coche");
+			while(cursor.next()) {
+				Coche c=new Coche();
+				c.nombre=cursor.getString("nombre");
+				c.nombreEquipo=cursor.getString("nombreEquipo");
+				c.color=cursor.getString("color");
+				c.neumaticos=cursor.getString("neumaticos");
+				c.caballos=cursor.getByte("caballos");
+				c.nombrePiloto=cursor.getString("nombrePiloto");
+				c.maniobrabilidad=cursor.getByte("maniobrabilidad");
+				
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		
+		ConexionBD.desconectar();
+		
+		return ret;
+	}
+
+	
+	
 		
 
 	@Override

@@ -120,7 +120,7 @@ private JTextField campoCoche2;
 	     JLabel Manager = new JLabel("Manager");
 	     Manager.setForeground(Color.WHITE);
 	     Manager.setHorizontalAlignment(SwingConstants.CENTER);
-	     Manager.setBounds(550, 288, 45, 13);
+	     Manager.setBounds(533, 288, 74, 13);
 	     add(Manager);
 	     
 	     campoNombre = new JTextField();

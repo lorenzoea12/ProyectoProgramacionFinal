@@ -3,6 +3,7 @@ package Clases;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Excepciones.CurvaInvalida;
 import Excepciones.LugarInvalido;
@@ -220,6 +221,38 @@ public Circuito(int numeroCircuito) throws SQLException {
 			ConexionBD.desconectar();
 		}
 }
+
+	
+	public static ArrayList<Circuito> getTodos() {
+		ArrayList<Circuito> ret=new ArrayList<Circuito>();
+		
+		Statement smt=ConexionBD.conectar();
+		
+		try {
+			ResultSet cursor=smt.executeQuery("select * from Circuito");
+			while(cursor.next()) {
+				Circuito c=new Circuito();
+				c.nombre=cursor.getString("nombre");
+				c.numeroCircuito=cursor.getByte("numeroCircuito");
+				c.lugar=cursor.getString("lugar");
+				c.rectas=cursor.getByte("rectas");
+				c.curvas=cursor.getByte("curvas");
+				c.dificultad=cursor.getString("dificultad");
+				c.longitud=cursor.getFloat("longitud");
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		
+		ConexionBD.desconectar();
+		
+		return ret;
+	}
 
 	
 	

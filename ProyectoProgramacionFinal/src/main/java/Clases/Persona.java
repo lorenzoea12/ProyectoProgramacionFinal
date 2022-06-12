@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Excepciones.ApellidoInvalido;
 import Excepciones.EdadInvalida;
@@ -192,6 +193,38 @@ public  class Persona extends ElementoConNombre {
 				ConexionBD.desconectar();
 			}
 	}
+		
+		
+		public static ArrayList<Persona> getTodos() {
+			ArrayList<Persona> ret=new ArrayList<Persona>();
+			
+			Statement smt=ConexionBD.conectar();
+			
+			try {
+				ResultSet cursor=smt.executeQuery("select * from Persona");
+				while(cursor.next()) {
+					Persona u=new Persona();
+					u.nombre=cursor.getString("nombre");
+					u.dni=cursor.getString("dni");
+					u.edad=cursor.getInt("edad");
+					u.apellido=cursor.getString("apellido");
+					u.nacionalidad=cursor.getString("nacionalidad");
+					
+				}
+				
+				
+				
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			}
+			
+			ConexionBD.desconectar();
+			
+			return ret;
+		}
+
+			
 
 
 

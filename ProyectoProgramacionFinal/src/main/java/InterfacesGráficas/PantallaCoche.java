@@ -130,7 +130,7 @@ public class PantallaCoche extends JPanel {
 				ventana.cambiarPanel("menu");
 			}
 		});
-		botonAtras.setBounds(702, 573, 85, 21);
+		botonAtras.setBounds(640, 546, 85, 21);
 		add(botonAtras);
 		
 		JButton botonRegistrarse = new JButton("Registrar");

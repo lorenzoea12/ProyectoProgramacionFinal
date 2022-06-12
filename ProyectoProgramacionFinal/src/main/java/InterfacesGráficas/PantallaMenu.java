@@ -3,6 +3,8 @@ package InterfacesGráficas;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Hilos.MusicaFondo;
+
 import java.awt.Font;
 
 import javax.swing.JLabel;
@@ -11,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,6 +25,8 @@ public class PantallaMenu extends JPanel {
 	public PantallaMenu(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
+		MusicaFondo musica= new MusicaFondo(new File("./musica/formula1.wav"));
+		musica.start();
 		
 		JButton btnNewButton = new JButton("Atras");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -44,7 +49,9 @@ public class PantallaMenu extends JPanel {
 		botonMundial.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				ventana.cambiarPanel("mundial");
+			
 			}
 		});
 		botonMundial.setBounds(315, 418, 105, 41);
@@ -52,7 +59,7 @@ public class PantallaMenu extends JPanel {
 		botonCoche.setBackground(Color.WHITE);
 		botonCoche.setBounds(650, 303, 105, 41);
 		add(botonCoche);
-		btnNewButton.setBounds(643, 576, 85, 21);
+		btnNewButton.setBounds(613, 540, 85, 21);
 		add(btnNewButton);
 		
 		JButton botonCarrera = new JButton("Carrera");

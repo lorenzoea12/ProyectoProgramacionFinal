@@ -21,6 +21,7 @@ import Excepciones.ContraseñaIncorrectaException;
 import Excepciones.ContraseñaInvalida;
 import Excepciones.NombreInvalidoException;
 import Excepciones.UsuarioNoExisteException;
+import FicherodeTexto.Log;
 import Hilos.MusicaFondo;
 
 import javax.swing.JLabel;
@@ -44,38 +45,24 @@ private	Ventana ventana;
 	
 	public PantallaLogin(Ventana v) {
 		
-		//MusicaFondo musica= new MusicaFondo(new File("./musica/formula1.wav"));
-		//musica.start();
+		MusicaFondo musica= new MusicaFondo(new File("./musica/formula1.wav"));
+		musica.start();
 		
 		this.ventana=v;
 		setLayout(null);
 		
-		JButton botonLogin = new BotonRojo("Login");
-		botonLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		botonLogin.setForeground(Color.WHITE);
-		botonLogin.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
+
 			
-		});
-		botonLogin.setToolTipText("Pincha aqu\u00ED para iniciar sesi\u00F3n");
-		botonLogin.setBounds(258, 362, 160, 44);
-		this.add(botonLogin);
 		
 		JButton botonRegistro = new BotonAzul("Registrarse");
 		botonRegistro.setForeground(Color.WHITE);
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.irAPantalla("registro");
+				ventana.cambiarPanel("registro");
 			}
 		});
-		botonRegistro.setBounds(452, 361, 143, 46);
+		botonRegistro.setBounds(270, 342, 143, 46);
 		add(botonRegistro);
 		
 		JLabel etiquetaTitulo = new JLabel("Iniciar Sesi\u00F3n");
@@ -123,7 +110,7 @@ private	Ventana ventana;
 		JButton btnNewButton_1 = new BotonVerde("Salir ");
 		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setForeground(Color.RED);
-		btnNewButton_1.setBounds(376, 417, 116, 45);
+		btnNewButton_1.setBounds(282, 417, 116, 45);
 		add(btnNewButton_1);
 		
 		
@@ -135,6 +122,7 @@ private	Ventana ventana;
 				
 				try {
 					ventana.usuarioLogado=new Usuario(email,contraseña);
+					Log.log("\nEl usuario " + ventana.usuarioLogado.getEmail() + " se ha conectado ");
 					JOptionPane.showMessageDialog(ventana,
 							" Bienvenido " +ventana.usuarioLogado.getNombre(),
 							" Inicio de sesión con éxito ", JOptionPane.INFORMATION_MESSAGE);

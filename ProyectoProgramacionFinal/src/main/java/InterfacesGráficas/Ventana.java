@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Clases.Usuario;
@@ -18,15 +19,16 @@ public class Ventana extends JFrame {
 	private HashMap<String, JPanel> pantallas;
 	protected Usuario usuarioLogado;
 	
-	private String[] args;
+	
+	private JPanel panelActual;
 	
 	public  void romperVentanas() {
 		pantallas.clear();
 	}
 
-	public Ventana() {
+	public Ventana(String[] args) {
 		this.pantallas = new HashMap<String, JPanel>();
-		this.pantallas.put("login", new PantallaLogin(this));
+		this.pantallas.put("login", new PantallaMenu(this));
 		this.pantallas.put("registro", new PantallaRegistro(this));
 
 		this.setSize(810, 620);
@@ -43,7 +45,17 @@ public class Ventana extends JFrame {
 		// this.setExtendedState(JFrame.MAXIMIZED_BOTH);estas dos lineas es para ponerlo
 		// en pantalla
 		// this.setUndecorated(true); completa
-
+		if (args.length > 0) {//args
+			String email = args[0];
+			String contraseña = args[1];
+			login(email, contraseña);
+		
+		} else {
+			this.panelActual = new PantallaMenu(this);
+		}
+		
+		
+		
 		this.setContentPane(this.pantallas.get("login"));
 		this.setVisible(true);
 
@@ -52,13 +64,23 @@ public class Ventana extends JFrame {
 
 	}
 	
-	public String[]getArgs(){
-		return args;
-	}
-	private void setArg(String[] args) {
-		this.args=args;
-	}
 	
+	
+
+	private void login(String email, String contraseña) {
+		try {
+			Usuario user= new Usuario(email, contraseña);
+
+			JOptionPane.showMessageDialog(this, "Bienvenid@ " + user.getNombre()+
+					"Inicio de sesion con éxito ", email, JOptionPane.INFORMATION_MESSAGE);
+			this.panelActual = new PantallaMenu(this);
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			this.panelActual = new PantallaLogin(this);
+		}
+		
+	}
 
 	public void irAPantalla(String nombrePantalla) {
 		Iterator it = this.pantallas.values().iterator();
