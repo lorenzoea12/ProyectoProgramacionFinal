@@ -1,6 +1,7 @@
 package InterfacesGráficas;
 
 import javax.swing.JPanel;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -116,18 +117,18 @@ public class PantallaPersona extends JPanel {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent e) {
+				String dni=campoDni.getText();
 				String nombre=campoNombre.getText();
-				String apellido=campoApellido.getText();
 				String edadSTR=campoEdad.getText();
 				int edad = Integer.parseInt(edadSTR);
-				String dni=campoDni.getText();
+				String apellido=campoApellido.getText();
 				String nacionalidad=campoNacionalidad.getText();
 				
 				JOptionPane.showMessageDialog(ventana,"Registro Completo","Registro",JOptionPane.PLAIN_MESSAGE );
 				ventana.irAPantalla("menu");
 			
 				try {
-					new Persona(nacionalidad,edad,apellido,nombre,dni);
+					new Persona(dni,nombre,edad,apellido,nacionalidad);
 				} catch (SQLException | ApellidoInvalido | EdadInvalida e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

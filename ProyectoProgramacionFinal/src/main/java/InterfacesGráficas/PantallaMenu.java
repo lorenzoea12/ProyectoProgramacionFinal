@@ -38,10 +38,21 @@ public class PantallaMenu extends JPanel {
 				ventana.cambiarPanel("coche");
 			}
 		});
+		
+		JButton botonMundial = new JButton("Mundial");
+		botonMundial.setBackground(Color.WHITE);
+		botonMundial.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPanel("mundial");
+			}
+		});
+		botonMundial.setBounds(315, 418, 105, 41);
+		add(botonMundial);
 		botonCoche.setBackground(Color.WHITE);
 		botonCoche.setBounds(650, 303, 105, 41);
 		add(botonCoche);
-		btnNewButton.setBounds(585, 438, 85, 21);
+		btnNewButton.setBounds(643, 576, 85, 21);
 		add(btnNewButton);
 		
 		JButton botonCarrera = new JButton("Carrera");
@@ -118,7 +129,7 @@ public class PantallaMenu extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(PantallaMenu.class.getResource("/imagenes/F1-2022-requisitos-2.jpg")));
-		lblNewLabel.setBounds(-25, 13, 810, 620);
+		lblNewLabel.setBounds(0, 0, 810, 620);
 		add(lblNewLabel);
 		
 		

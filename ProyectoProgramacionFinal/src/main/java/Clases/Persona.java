@@ -11,7 +11,7 @@ import Excepciones.EdadInvalida;
 import Excepciones.NombreInvalidoException;
 import Utils.ConexionBD;
 
-public class Persona extends ElementoConNombre {
+public  class Persona extends ElementoConNombre {
 	private String dni;
 	private int edad;
 	private String apellido;
@@ -19,8 +19,11 @@ public class Persona extends ElementoConNombre {
 	
 	
 
+	protected Persona() {
+		
+	}
 
-	public Persona(String nombre, int edad, String apellido, String nacionalidad, String dni) throws SQLException, ApellidoInvalido, EdadInvalida {
+	public Persona(String dni, String nombre, int edad, String apellido, String nacionalidad) throws SQLException, ApellidoInvalido, EdadInvalida {
 		super(nombre);
 		
 		if(!edadValida(edad)) {
@@ -36,7 +39,7 @@ public class Persona extends ElementoConNombre {
 			this.edad = edad;
 			this.apellido = apellido;
 			this.nacionalidad = nacionalidad;
-		
+			ConexionBD.desconectar();
 			
 			
 		}else {
@@ -54,6 +57,7 @@ public class Persona extends ElementoConNombre {
 		ResultSet cursor = smt.executeQuery("SELECT * FROM persona WHERE dni =" + dni +";");
 		
 		if (cursor.next() ) {
+			this.nombre=cursor.getString("nombre");
 			this.edad = cursor.getInt("edad");
 			this.apellido = cursor.getString("apellido");
 			this.nacionalidad = cursor.getString("nacionalidad");
@@ -103,7 +107,7 @@ public class Persona extends ElementoConNombre {
 			throw new EdadInvalida("La edad no puede ser menos a 12 años ");
 		}
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update mascota set raza='"+edad+"' where numeroChip = "+this.dni+"")>0) {
+		if(smt.executeUpdate("Update persona set edad='"+edad+"' where dni = "+this.dni+"")>0) {
 			this.edad=edad;
 			ConexionBD.desconectar();
 		}
@@ -133,7 +137,7 @@ public class Persona extends ElementoConNombre {
 			throw new ApellidoInvalido("El apellido no puede estar vacio");
 		}
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update persona set apellido='"+apellido+"' where id="+this.dni+"")>0) {
+		if(smt.executeUpdate("Update persona set apellido='"+apellido+"' where dni="+this.dni+"")>0) {
 		
 			this.apellido = apellido;
 			
@@ -157,7 +161,7 @@ public class Persona extends ElementoConNombre {
 	
 	public void setNacionalidad(String nacionalidad) throws SQLException {
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update persona set nacionalidad='"+nacionalidad+"'where id="+dni+"")>0) {
+		if(smt.executeUpdate("Update persona set nacionalidad='"+nacionalidad+"'where dni="+dni+"")>0) {
 		this.nacionalidad = nacionalidad;
 		ConexionBD.desconectar();
 		
@@ -191,12 +195,13 @@ public class Persona extends ElementoConNombre {
 
 
 
-		@Override
-		public String toString() {
-			return "Persona [dni=" + dni + ", edad=" + edad + ", apellido=" + apellido + ", nacionalidad="
-					+ nacionalidad + "]";
-		}
-	
+		 @Override
+			public String toString() {
+				return "Persona [dni=" + dni + ", edad=" + edad + ", apellido=" + apellido + ", nacionalidad=" + nacionalidad
+						+ "]";
+			}
+
+		
 
 
 

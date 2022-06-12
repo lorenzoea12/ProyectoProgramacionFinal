@@ -10,22 +10,26 @@ import java.util.ArrayList;
 
 import Utils.ConexionBD;
 
-public class Equipo  {
+public class Equipo {
 	private String nombre;
 	private String manager;
-	private String piloto1;
-	private String piloto2;
-	private String coche1;
-	private String coche2;
-	
+	/*private Piloto piloto1;
+	private Piloto piloto2;
+	private Coche coche1;
+	private Coche coche2;
+	*/
+	private String nombrePiloto1;
+	private String nombrePiloto2;
+	private String nombreCoche1;
+	private String nombreCoche2;
 	
 
-	public Equipo(String nombre, String manager, String piloto1, String piloto2, String coche1, String coche2) throws SQLException {
+	/*public Equipo(String nombre, String manager, Piloto piloto1, Piloto piloto2, Coche coche1, Coche coche2) throws SQLException {
 		super();
 		Statement smt=ConexionBD.conectar();
 		
 		if(smt.executeUpdate("insert into coche (nombre,manager,piloto1,piloto2,coche1,coche2,) values('"
-				+nombre+"','"+manager+"','"+piloto1+"','"+piloto2+"','"+coche1+"','"+coche2+"')")>0) {
+				+nombre+"','"+manager+"','"+piloto1+"','"+piloto2+"','"+coche1.getNombre()+"','"+coche2.getNombre()+"')")>0) {
 			this.nombre = nombre;
 			this.manager = manager;
 			this.piloto1 = piloto1;
@@ -37,28 +41,55 @@ public class Equipo  {
 			throw new SQLException(" No se ha podido insertar lo datos ");
 		}
 	}
+	*/
 	
 	
 	
+
+
+
+	public Equipo(String nombre, String manager, String nombrePiloto1, String nombrePiloto2, String nombreCoche1, String nombreCoche2) throws SQLException {
+		super();
+		Statement smt=ConexionBD.conectar();
+		
+		if(smt.executeUpdate("insert into equipo (nombre,manager,nombrePiloto1,nombrePiloto2,nombreCoche1,nombreCoche2) values('"
+				+nombre+"','"+manager+"','"+nombrePiloto1+"','"+nombrePiloto2+"','"+nombreCoche1+"','"+nombreCoche2+"')")>0) {
+			this.nombre = nombre;
+			this.manager = manager;
+			this.nombrePiloto1=nombrePiloto1 ;
+			this.nombrePiloto2 = nombrePiloto2 ;
+			this.nombreCoche1 = nombreCoche1;
+			this.nombreCoche2 = nombreCoche2;
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se ha podido insertar lo datos ");
+		}
+	}
+	
+	
+	
+	
+
 	public Equipo(String nombre) throws SQLException {
 		Statement smt = ConexionBD.conectar();
 		try {
 			ResultSet cursor= smt.executeQuery(" SELECT * FROM equipo WHERE nombre="+nombre+";");
 			if (cursor.next() ) {
 				this.manager = cursor.getString("manager");
-				this.piloto1 = cursor.getString("piloto1");
-				this.piloto2 = cursor.getString("piloto2");
-				this.coche1 = cursor.getString("coche1");
-				this.coche2 = cursor.getString("coche2");
+				this.nombrePiloto1=cursor.getString("nombrePiloto1");
+				this.nombrePiloto2=cursor.getString("nombrePiloto2");
+				this.nombreCoche1=cursor.getString("nombreCoche1");
+				this.nombreCoche2=cursor.getString("nombreCoche2");
 			}	
 		} finally {
 			ConexionBD.desconectar();
 		}
-
 	}
 			
-
 	
+	
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -72,7 +103,7 @@ public class Equipo  {
 			ConexionBD.desconectar();
 		}else {
 			ConexionBD.desconectar();
-			throw new SQLException(" No se pudo cambiar el dni o ya estaba asiganado ");
+			throw new SQLException(" No se pudo cambiar el nombre del equipo ");
 		}
 }	
 	
@@ -90,48 +121,48 @@ public class Equipo  {
 			ConexionBD.desconectar();
 		}else {
 			ConexionBD.desconectar();
-			throw new SQLException(" No se pudo cambiar el dni o ya estaba asiganado ");
+			throw new SQLException(" No se pudo cambiar el manager del equipo");
 		}
 }	
 	
 	
 	
 	
-	public String getPiloto1() {
-		return piloto1;
+	public String getnombrePiloto1() {
+		return nombrePiloto1;
 	}
 	
 	
-	public void setPiloto1(String piloto1) throws SQLException {
+	public void setPiloto1(String nombrePiloto1) throws SQLException {
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update equipo set piloto1="+piloto1+" where nombre="+this.nombre+"")>0) {
-			this.piloto1=piloto1;
+		if(smt.executeUpdate("Update equipo set nombrePiloto1="+nombrePiloto1+" where nombre="+this.nombre+"")>0) {
+			this.nombrePiloto1=nombrePiloto1;
 			ConexionBD.desconectar();
 		}else {
 			ConexionBD.desconectar();
-			throw new SQLException(" No se pudo cambiar el dni o ya estaba asiganado ");
+			throw new SQLException(" No se pudo cambiar el nombre del primer piloto ");
 		}
 }	
 	
 	
 	
 	
-	public String getPiloto2() {
+	public String getnombrePiloto2() {
 		
-		return piloto2;
+		return nombrePiloto2;
 	}
 	
 	
 	
 	
-	public void setPiloto2(String piloto2) throws SQLException {
+	public void setPiloto2(String nombrePiloto2) throws SQLException {
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update equipo set piloto2="+piloto2+" where nombre="+this.nombre+"")>0) {
-			this.piloto2=piloto2;
+		if(smt.executeUpdate("Update equipo set nombrePiloto2="+nombrePiloto2+" where nombre="+this.nombre+"")>0) {
+			this.nombrePiloto2=nombrePiloto2;
 			ConexionBD.desconectar();
 		}else {
 			ConexionBD.desconectar();
-			throw new SQLException(" No se pudo cambiar el dni o ya estaba asiganado ");
+			throw new SQLException(" No se pudo cambiar el nombre del piloto2");
 		}
 }	
 		
@@ -140,42 +171,18 @@ public class Equipo  {
 	
 	
 	
-	public String getCoche1() {
-		return coche1;
+	public String getnombreCoche1() {
+		return nombreCoche1;
 	}
 	
 	
 	
 	
 	
-	public void setCoche1(String coche1) throws SQLException {
+	public void setCoche1(String  nombreCoche1) throws SQLException {
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update equipo set coche1="+coche1+" where nombre="+this.nombre+"")>0) {
-			this.coche1=coche1;
-			ConexionBD.desconectar();
-		}else {
-			ConexionBD.desconectar();
-			throw new SQLException(" No se pudo cambiar el dni o ya estaba asiganado ");
-		}
-}	
-		
-		
-		
-	
-	
-	
-	
-	public String getCoche2() {
-		return coche2;
-	}
-	
-	
-	
-	
-	public void setCoche2(String coche2) throws SQLException {
-		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("Update equipo set coche2="+coche2+" where nombre="+this.nombre+"")>0) {
-			this.coche2=coche2;
+		if(smt.executeUpdate("Update equipo set nombreCoche1="+nombreCoche1+" where nombre="+this.nombre+"")>0) {
+			this.nombreCoche1=nombreCoche1;
 			ConexionBD.desconectar();
 		}else {
 			ConexionBD.desconectar();
@@ -184,16 +191,41 @@ public class Equipo  {
 }	
 		
 		
+		
 	
 	
+	
+	
+	public String getNombreCoche2() {
+		return nombreCoche2;
+	}
+	
+	
+	
+	
+	public void setCoche2(String  nombreCoche2) throws SQLException {
+		Statement smt=ConexionBD.conectar();
+		if(smt.executeUpdate("Update equipo set nombreCoche2="+nombreCoche2+" where nombre="+this.nombre+"")>0) {
+			this.nombreCoche2=nombreCoche2;
+			ConexionBD.desconectar();
+		}else {
+			ConexionBD.desconectar();
+			throw new SQLException(" No se pudo cambiar el dni o ya estaba asiganado ");
+		}
+}	
 	@Override
 	public String toString() {
-		return "Equipo [nombre=" + nombre + ", manager=" + manager + ", piloto1=" + piloto1 + ", piloto2=" + piloto2
-				+ ", coche1=" + coche1 + ", coche2=" + coche2 + "]";
+		return "Equipo [nombre=" + nombre + ", manager=" + manager + ", nombrePiloto1=" + nombrePiloto1
+				+ ", nombrePiloto2=" + nombrePiloto2 + ", nombreCoche1=" + nombreCoche1 + ", nombreCoche2="
+				+ nombreCoche2 + "]";
 	}
 
-
 }
+		
+		
+	
+	
+	
 	
 
 	

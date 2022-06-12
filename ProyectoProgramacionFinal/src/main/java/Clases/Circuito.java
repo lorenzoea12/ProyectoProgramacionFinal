@@ -24,24 +24,22 @@ public Circuito() {
 }
 
 
-	public Circuito(String nombre,byte numeroCircuito, String lugar, byte rectas, byte curvas, String dificultad, float longitud) throws SQLException, LugarInvalido, CurvaInvalida {
+	public Circuito(byte numeroCircuito,String nombre, String lugar, byte rectas, byte curvas, String dificultad, float longitud) throws SQLException, LugarInvalido, CurvaInvalida {
 		super(nombre);
 		if(!lugarValido(lugar)) {
 			throw new LugarInvalido (" El lugar no puede estar vacio porfavor ");
 		}
-		if(curvaValida(curvas)) {
-			throw new CurvaInvalida (" Las curvas no pueden ser menor a el numero indicado");
-		}
+		
 		Statement smt=ConexionBD.conectar();
-		if(smt.executeUpdate("insert into circuito (nombre,numeroCircuito,lugar,rectas,curvas,dificultad,longitud) values  ('"
-				+nombre+"','"+numeroCircuito+"''"+lugar+"','"+rectas+"','"+curvas+"','"+dificultad+"','"+longitud+"')")>0) {
+		if(smt.executeUpdate("insert into circuito (numeroCircuito,nombre,lugar,rectas,curvas,dificultad,longitud) values  ('"
+				+numeroCircuito+"','"+nombre+"','"+lugar+"','"+rectas+"','"+curvas+"','"+dificultad+"','"+longitud+"')")>0) {
 			this.numeroCircuito=numeroCircuito;
 			this.lugar = lugar;
 			this.rectas = rectas;
 			this.curvas = curvas;
 			this.dificultad = dificultad;
 			this.longitud = longitud;
-		
+			ConexionBD.desconectar();
 		
 		}else {
 			ConexionBD.desconectar();
@@ -141,9 +139,7 @@ public Circuito(int numeroCircuito) throws SQLException {
 		
 	
 	
-	public static boolean curvaValida (byte curvas) {
-		return !(curvas<16);
-	}
+
 	
 	public byte getCurvas() {
 		return curvas;
@@ -151,11 +147,9 @@ public Circuito(int numeroCircuito) throws SQLException {
 	
 	
 	
-	public void setCurvas(byte curvas) throws SQLException, CurvaInvalida {
+	public void setCurvas(byte curvas) throws SQLException {
 		
-		if(curvaValida(curvas)) {
-			throw new CurvaInvalida (" Las curvas no pueden ser menor a el numero indicado");
-		}
+		
 		
 		Statement smt=ConexionBD.conectar();
 		if(smt.executeUpdate("Update cirucito set curvas ="+curvas+" where numeroCircuito="+this.numeroCircuito+"")>0) {

@@ -44,8 +44,9 @@ private	Ventana ventana;
 	
 	public PantallaLogin(Ventana v) {
 		
-		MusicaFondo musica= new MusicaFondo(new File("./musica/formula1.wav"));
-		musica.start();
+		//MusicaFondo musica= new MusicaFondo(new File("./musica/formula1.wav"));
+		//musica.start();
+		
 		this.ventana=v;
 		setLayout(null);
 		
@@ -135,8 +136,8 @@ private	Ventana ventana;
 				try {
 					ventana.usuarioLogado=new Usuario(email,contraseña);
 					JOptionPane.showMessageDialog(ventana,
-							"Bienvenido"+ventana.usuarioLogado.getNombre(),
-							"Inicio de sesión con éxito", JOptionPane.INFORMATION_MESSAGE);
+							" Bienvenido " +ventana.usuarioLogado.getNombre(),
+							" Inicio de sesión con éxito ", JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarPanel("menu");
 				
 				} catch (SQLException e1) {

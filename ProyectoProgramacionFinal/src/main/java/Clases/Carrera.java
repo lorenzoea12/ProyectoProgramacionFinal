@@ -8,70 +8,75 @@ import java.util.ArrayList;
 import Utils.ConexionBD;
 
 public class Carrera {
-	private Date fecha;
-	private ArrayList<Circuito>circuito;
-	private ArrayList<Piloto>piloto;
+	private  byte numeroCarrera;
+	private  byte numeroCircuito;
+	private  String nombreEquipo;
+	
+	
+	
 	
 	
 	
 	
 
-	public Carrera(Date fecha, ArrayList<Circuito> circuito, ArrayList<Piloto> piloto) {
+	public Carrera(byte numeroCarrera, byte numeroCircuito, String nombreEquipo) throws SQLException {
 		super();
 		
-			Statement smt = ConexionBD.conectar();
+			Statement smt=ConexionBD.conectar();
 		
-		if (smt.executeUpdate("insert into carrera (fecha,ArrayList<Circuito>circuito,ArrayList<Piloto>piloto = " + numChip 8+ " WHERE humano = '" + this.numChip + "';")
-				> 0
-		) 
-		{
-			this.numChip = numChip;
-		} else {
+		if(smt.executeUpdate("insert into carrera (numeroCarrera,numeroCircuito,nombreEquipo) values('"
+				+numeroCarrera+"','"+numeroCircuito+"','"+nombreEquipo+"')")>0) {
+			this.numeroCarrera = numeroCarrera;
+			this.numeroCircuito = numeroCircuito;
+			this.nombreEquipo = nombreEquipo;
+		}else {
 			ConexionBD.desconectar();
-			throw new SQLException("Numero de chip incorrecto o duplicado.");
+			throw new SQLException(" No se ha podido insertar lo datos ");
 		}
-		
-		ConexionBD.desconectar();
 	}
+	
+	
 
-		
+	public byte getNumeroCarrera() {
+		return numeroCarrera;
+	}
+	
+	
+	public void setNumeroCarrera(byte numeroCarrera) {
+		this.numeroCarrera = numeroCarrera;
 
-
-	public Date getFecha() {
-		return fecha;
 	}
 	
 	
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public byte getNumeroCircuito() {
+		return numeroCircuito;
 	}
 	
 	
-	public ArrayList<Circuito> getCircuito() {
-		return circuito;
+	public void setNumeroCircuito(byte numeroCircuito) {
+		this.numeroCircuito = numeroCircuito;
 	}
 	
 	
-	public void setCircuito(ArrayList<Circuito> circuito) {
-		this.circuito = circuito;
+	public String getNombreEquipo() {
+		return nombreEquipo;
 	}
 	
 	
-	public ArrayList<Piloto> getPiloto() {
-		return piloto;
+	public void setNombreEquipo(String nombreEquipo) {
+		this.nombreEquipo = nombreEquipo;
 	}
 	
 	
-	public void setPiloto(ArrayList<Piloto> piloto) {
-		this.piloto = piloto;
-	}
 	
 	
 	@Override
 	public String toString() {
-		return "Carrera [fecha=" + fecha + ", circuito=" + circuito + ", piloto=" + piloto + "]";
+		return "Carrera [numeroCarrera=" + numeroCarrera + ", numeroCircuito=" + numeroCircuito + ", nombreEquipo="
+				+ nombreEquipo + "]";
 	}
 
+	
 	
 	
 	

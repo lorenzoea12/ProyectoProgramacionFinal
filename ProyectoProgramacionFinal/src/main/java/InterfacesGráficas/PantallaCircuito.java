@@ -2,12 +2,24 @@ package InterfacesGráficas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import Clases.Circuito;
+import Clases.Persona;
+import Excepciones.ApellidoInvalido;
+import Excepciones.CurvaInvalida;
+import Excepciones.EdadInvalida;
+import Excepciones.LugarInvalido;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -16,12 +28,12 @@ import java.awt.event.ActionEvent;
 public class PantallaCircuito extends JPanel {
 private Ventana ventana;	
 private JTextField campoNombre;
-private JTextField textField_1;
+private JTextField campoNumeroCircuito;
 private JTextField campoLugar;
-private JTextField textField_3;
-private JTextField textField_4;
+private JTextField campoRectas;
+private JTextField campoCurvas;
 private JTextField campoDificultad;
-private JTextField textField_6;
+private JTextField campoLongitud;
 	
 	public PantallaCircuito(Ventana v) {
 		this.ventana=v;
@@ -31,12 +43,26 @@ private JTextField textField_6;
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String Circuito=campoNumeroCircuito.getText();
+				byte numeroCircuito=Byte.parseByte(Circuito);
 				String nombre = campoNombre.getText();
-				
 				String lugar=campoLugar.getText();
-				
+				String rectas1=campoRectas.getText();
+				byte rectas=Byte.parseByte(rectas1);
+				String curvas1=campoCurvas.getText();
+				byte curvas=Byte.parseByte(curvas1);
 				String dificultad=campoDificultad.getText();
-		
+				String longitud1=campoLongitud.getText();
+				float longitud=Float.parseFloat(longitud1);
+				JOptionPane.showMessageDialog(ventana,"Registro Completo","Registro",JOptionPane.PLAIN_MESSAGE );
+				ventana.irAPantalla("menu");
+			
+				try {
+					new Circuito(numeroCircuito,nombre,lugar,rectas,curvas,dificultad,longitud);
+				} catch (SQLException |  LugarInvalido | CurvaInvalida e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
@@ -59,25 +85,25 @@ private JTextField textField_6;
 		JLabel Nombre = new JLabel("Nombre");
 		Nombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		Nombre.setForeground(Color.WHITE);
-		Nombre.setBounds(363, 73, 65, 13);
+		Nombre.setBounds(363, 117, 65, 13);
 		add(Nombre);
 		
 		campoNombre = new JTextField();
-		campoNombre.setBounds(457, 72, 96, 19);
+		campoNombre.setBounds(438, 116, 96, 19);
 		add(campoNombre);
 		campoNombre.setColumns(10);
 		
-		JLabel campoNumeroCircuito = new JLabel("NumeroCircuito");
-		campoNumeroCircuito.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		campoNumeroCircuito.setForeground(Color.WHITE);
-		campoNumeroCircuito.setHorizontalAlignment(SwingConstants.CENTER);
-		campoNumeroCircuito.setBounds(332, 119, 115, 13);
-		add(campoNumeroCircuito);
+		JLabel circuito = new JLabel("NumeroCircuito");
+		circuito.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		circuito.setForeground(Color.WHITE);
+		circuito.setHorizontalAlignment(SwingConstants.CENTER);
+		circuito.setBounds(332, 73, 115, 13);
+		add(circuito);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(457, 116, 96, 19);
-		add(textField_1);
-		textField_1.setColumns(10);
+		campoNumeroCircuito = new JTextField();
+		campoNumeroCircuito.setBounds(446, 72, 96, 19);
+		add(campoNumeroCircuito);
+		campoNumeroCircuito.setColumns(10);
 		
 		JLabel Lugar = new JLabel("Lugar");
 		Lugar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -87,33 +113,33 @@ private JTextField textField_6;
 		add(Lugar);
 		
 		campoLugar = new JTextField();
-		campoLugar.setBounds(457, 161, 96, 19);
+		campoLugar.setBounds(438, 163, 96, 19);
 		add(campoLugar);
 		campoLugar.setColumns(10);
 		
-		JLabel campoRectas = new JLabel("Rectas");
-		campoRectas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		campoRectas.setForeground(Color.WHITE);
-		campoRectas.setHorizontalAlignment(SwingConstants.CENTER);
-		campoRectas.setBounds(364, 214, 45, 13);
+		JLabel Rectas = new JLabel("Rectas");
+		Rectas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Rectas.setForeground(Color.WHITE);
+		Rectas.setHorizontalAlignment(SwingConstants.CENTER);
+		Rectas.setBounds(364, 214, 45, 13);
+		add(Rectas);
+		
+		campoRectas = new JTextField();
+		campoRectas.setBounds(438, 213, 96, 19);
 		add(campoRectas);
+		campoRectas.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(457, 211, 96, 19);
-		add(textField_3);
-		textField_3.setColumns(10);
+		JLabel Curvas = new JLabel("Curvas");
+		Curvas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Curvas.setForeground(Color.WHITE);
+		Curvas.setHorizontalAlignment(SwingConstants.CENTER);
+		Curvas.setBounds(364, 261, 45, 13);
+		add(Curvas);
 		
-		JLabel campoCurvas = new JLabel("Curvas");
-		campoCurvas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		campoCurvas.setForeground(Color.WHITE);
-		campoCurvas.setHorizontalAlignment(SwingConstants.CENTER);
-		campoCurvas.setBounds(364, 261, 45, 13);
+		campoCurvas = new JTextField();
+		campoCurvas.setBounds(438, 260, 96, 19);
 		add(campoCurvas);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(457, 258, 96, 19);
-		add(textField_4);
-		textField_4.setColumns(10);
+		campoCurvas.setColumns(10);
 		
 		JLabel Dificultad = new JLabel("Dificultad");
 		Dificultad.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -122,20 +148,20 @@ private JTextField textField_6;
 		add(Dificultad);
 		
 		campoDificultad = new JTextField();
-		campoDificultad.setBounds(457, 309, 96, 19);
+		campoDificultad.setBounds(438, 309, 96, 19);
 		add(campoDificultad);
 		campoDificultad.setColumns(10);
 		
-		JLabel campoLongitud = new JLabel("Longitud");
-		campoLongitud.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		campoLongitud.setForeground(Color.WHITE);
-		campoLongitud.setBounds(364, 364, 64, 13);
-		add(campoLongitud);
+		JLabel Longitud = new JLabel("Longitud");
+		Longitud.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Longitud.setForeground(Color.WHITE);
+		Longitud.setBounds(364, 364, 64, 13);
+		add(Longitud);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(457, 361, 96, 19);
-		add(textField_6);
-		textField_6.setColumns(10);
+		campoLongitud = new JTextField();
+		campoLongitud.setBounds(438, 363, 96, 19);
+		add(campoLongitud);
+		campoLongitud.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Atras");
 		btnNewButton.addMouseListener(new MouseAdapter() {

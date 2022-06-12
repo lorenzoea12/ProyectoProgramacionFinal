@@ -26,7 +26,7 @@ public class ElementoConNombre {
 	
 	
 
-	public void setNombre(String nombre)  {
+	public void setNombre(String nombre) throws SQLException  {
 		this.nombre = nombre;
 	}
 	

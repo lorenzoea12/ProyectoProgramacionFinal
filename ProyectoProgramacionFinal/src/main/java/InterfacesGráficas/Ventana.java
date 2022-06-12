@@ -18,6 +18,8 @@ public class Ventana extends JFrame {
 	private HashMap<String, JPanel> pantallas;
 	protected Usuario usuarioLogado;
 	
+	private String[] args;
+	
 	public  void romperVentanas() {
 		pantallas.clear();
 	}
@@ -34,6 +36,7 @@ public class Ventana extends JFrame {
 		this.setAlwaysOnTop(true);// superpone siempre la ventana
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);// importante para que se salga al cerrar la ventana
 		this.setResizable(false);
+		
 		// this.setEnabled(false); te bloquea la ventana no se puede cerrar
 		this.setLocationRelativeTo(null);// centra la ventana
 
@@ -48,6 +51,14 @@ public class Ventana extends JFrame {
 		s.isBlank();
 
 	}
+	
+	public String[]getArgs(){
+		return args;
+	}
+	private void setArg(String[] args) {
+		this.args=args;
+	}
+	
 
 	public void irAPantalla(String nombrePantalla) {
 		Iterator it = this.pantallas.values().iterator();
@@ -108,6 +119,9 @@ public class Ventana extends JFrame {
             	break;
             case"equipo":
             	pantallas.put(panel, new PantallaEquipo(this));
+            	break;
+            case"mundial":
+            	pantallas.put(panel,new PantallaMundial(this));
             	break;
 
             }
